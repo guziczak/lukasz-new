@@ -667,7 +667,7 @@
         /* Contact Section */
         .contact-container {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr 1fr;
             gap: 3rem;
         }
 
@@ -719,16 +719,74 @@
             color: var(--primary-color);
         }
 
-        .contact-form {
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            box-shadow: var(--card-shadow);
+        .contact-action {
+            text-align: center;
+            margin-top: 2rem;
         }
 
-        body.dark-mode .contact-form {
+        .contact-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-card {
+            background-color: var(--light-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        body.dark-mode .contact-card {
             background-color: var(--dark-card);
             box-shadow: var(--dark-card-shadow);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .contact-card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .contact-card-body {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .contact-card-text {
+            margin-bottom: 2rem;
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
+        .contact-card-btn {
+            align-self: center;
         }
 
         .form-group {
@@ -766,6 +824,104 @@
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--light-card);
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: translateY(-50px);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .modal-content {
+            background-color: var(--dark-card);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-content.draggable {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: default;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            cursor: move;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            margin-bottom: 0;
+            user-select: none; /* Prevent text selection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            color: white;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
         }
 
         /* Footer */
@@ -857,77 +1013,6 @@
             transform: translateY(-5px);
         }
 
-        /* Modal */
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-        }
-
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            width: 100%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transform: translateY(-50px);
-            transition: var(--transition);
-        }
-
-        body.dark-mode .modal-content {
-            background-color: var(--dark-card);
-        }
-
-        .modal.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-title {
-            font-family: var(--heading-font);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .modal-close {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--gray-text);
-            transition: var(--transition);
-        }
-
-        .modal-close:hover {
-            color: var(--primary-color);
-            transform: rotate(90deg);
-        }
-
         /* Skill Sliders */
         .skill-progress {
             margin-top: 0.5rem;
@@ -959,117 +1044,6 @@
         .animate.active {
             opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .hero-content {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 2rem;
-            }
-
-            .hero-cta {
-                justify-content: center;
-            }
-
-            .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-title {
-                font-size: 2.8rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 70%;
-                background-color: var(--light-card);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: var(--transition);
-                z-index: 1001;
-            }
-
-            body.dark-mode .nav-links {
-                background-color: var(--dark-card);
-            }
-
-            .nav-links.active {
-                right: 0;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                z-index: 1002;
-            }
-
-            .logo {
-                font-size: 1.3rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1.5rem;
-            }
-
-            .profile-container {
-                width: 280px;
-                height: 280px;
-            }
-
-            .profile-img {
-                width: 220px;
-                height: 220px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-
-            .stat-item {
-                padding: 1rem;
-            }
-
-            .stat-number {
-                font-size: 2rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .hero-cta .btn {
-                width: 100%;
-            }
         }
 
         /* Games Section Specific Styles */
@@ -1347,6 +1321,122 @@
 
         body.dark-mode .lang-name {
             color: var(--dark-text);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .about-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background-color: var(--light-card);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                z-index: 1001;
+            }
+
+            body.dark-mode .nav-links {
+                background-color: var(--dark-card);
+            }
+
+            .nav-links.active {
+                right: 0;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1002;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .profile-container {
+                width: 280px;
+                height: 280px;
+            }
+
+            .profile-img {
+                width: 220px;
+                height: 220px;
+            }
+            
+            .modal-content.draggable {
+                width: 95%;
+                max-height: 95vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .stat-item {
+                padding: 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-cta .btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -1887,30 +1977,68 @@
                             <a href="https://linkedin.com/in/guziczak" target="_blank">linkedin.com/in/guziczak</a>
                         </div>
                     </div>
-                </div>
-                <div class="contact-form animate" style="animation-delay: 0.2s;">
-                    <form action="mailto:guziczak@pm.me" method="post" enctype="text/plain" id="contactForm">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" id="nameInput" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" id="emailInput" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject" id="subjectInput" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" id="messageInput" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="sendMessageBtn">
+                    <div class="contact-action animate" style="margin-top: 2rem;">
+                        <button id="openContactModalBtn" class="btn btn-primary">
                             <i class="fas fa-paper-plane"></i>
-                            <span id="sendMessage">Send Message</span>
+                            <span id="openModalText">Send Me a Message</span>
                         </button>
-                    </form>
+                    </div>
+                </div>
+                
+                <!-- Right side with a card -->
+                <div class="contact-visual animate" style="animation-delay: 0.2s;">
+                    <div class="contact-card">
+                        <div class="contact-card-header">
+                            <i class="fas fa-comment-dots contact-card-icon"></i>
+                            <h4 class="contact-card-title" id="contactCardTitle">Let's Connect</h4>
+                        </div>
+                        <div class="contact-card-body">
+                            <p class="contact-card-text" id="contactCardText">
+                                Feel free to reach out for job opportunities, collaborations, or just to say hello. 
+                                I'm always interested in new projects and challenges!
+                            </p>
+                            <button id="openContactModalBtn2" class="btn btn-primary contact-card-btn">
+                                <i class="fas fa-paper-plane"></i>
+                                <span id="openModalText2">Send Message</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Modal for Contact Form -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content draggable">
+            <div class="modal-header" id="modalHeader">
+                <h3 class="modal-title">Contact Me</h3>
+                <button class="modal-close" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contactModalForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Your Name" id="modalNameInput" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email" id="modalEmailInput" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Subject" id="modalSubjectInput" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" placeholder="Your Message" id="modalMessageInput" required></textarea>
+                    </div>
+                    <button type="button" id="sendModalMessageBtn" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span id="sendModalMessage">Send Message</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1950,6 +2078,21 @@
         const backToTopBtn = document.getElementById('backToTopBtn');
         const animatedElements = document.querySelectorAll('.animate');
         const currentLangFlag = document.getElementById('currentLangFlag');
+
+        // Modal Elements
+        const contactModal = document.getElementById('contactModal');
+        const openContactModalBtn = document.getElementById('openContactModalBtn');
+        const openContactModalBtn2 = document.getElementById('openContactModalBtn2');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalContent = document.querySelector('.modal-content.draggable');
+        const modalHeader = document.getElementById('modalHeader');
+        const sendModalMessageBtn = document.getElementById('sendModalMessageBtn');
+        
+        // Form elements
+        const modalNameInput = document.getElementById('modalNameInput');
+        const modalEmailInput = document.getElementById('modalEmailInput');
+        const modalSubjectInput = document.getElementById('modalSubjectInput');
+        const modalMessageInput = document.getElementById('modalMessageInput');
 
         // Theme Toggle
         function toggleDarkMode() {
@@ -2134,7 +2277,13 @@
                     'contactLocation': 'Wrocław, Poland',
                     'sendMessage': 'Send Message',
                     'copyright': '&copy; 2025 All Rights Reserved',
-                    'footerCV': 'CV'
+                    'footerCV': 'CV',
+                    'modalTitle': 'Contact Me',
+                    'openModalText': 'Send Me a Message',
+                    'openModalText2': 'Send Message',
+                    'sendModalMessage': 'Send Message',
+                    'contactCardTitle': 'Let\'s Connect',
+                    'contactCardText': 'Feel free to reach out for job opportunities, collaborations, or just to say hello. I\'m always interested in new projects and challenges!'
                 },
                 'pl': {
                     'heroTitle': 'Programista Full-stack & Analityk',
@@ -2189,42 +2338,188 @@
                     'contactTitle': 'Kontakt',
                     'contactInfoTitle': 'Skontaktuj się',
                     'contactLocation': 'Wrocław, Polska',
-                    'sendMessage': 'Wyślij Wiadomość',
-                    'copyright': '&copy; 2025 Wszelkie Prawa Zastrzeżone',
-                    'footerCV': 'CV'
-                }
-            };
+'sendMessage': 'Wyślij Wiadomość',
+'copyright': '&copy; 2025 Wszelkie Prawa Zastrzeżone',
+'footerCV': 'CV',
+'modalTitle': 'Kontakt',
+'openModalText': 'Wyślij Wiadomość',
+'openModalText2': 'Wyślij Wiadomość',
+'sendModalMessage': 'Wyślij Wiadomość',
+'contactCardTitle': 'Nawiążmy Kontakt',
+'contactCardText': 'Skontaktuj się ze mną w sprawie ofert pracy, współpracy lub po prostu, aby się przywitać. Zawsze interesują mnie nowe projekty i wyzwania!'
+}
+};
 
-            // Update content
-            Object.keys(elements[lang]).forEach(id => {
-                const element = document.getElementById(id);
-                if (element) {
-                    if (id.includes('Desc') || id === 'aboutDescription' || id === 'aboutExperience' || id === 'gamesDescription' || id === 'heroDescription') {
-                        element.innerText = elements[lang][id];
-                    } else {
-                        element.innerHTML = elements[lang][id];
-                    }
-                }
-            });
-
-            // Update language flag
-            currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
+// Update content
+Object.keys(elements[lang]).forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+        if (id.includes('Desc') || id === 'aboutDescription' || id === 'aboutExperience' || id === 'gamesDescription' || id === 'heroDescription' || id === 'contactCardText') {
+            element.innerText = elements[lang][id];
+        } else {
+            element.innerHTML = elements[lang][id];
         }
+    }
+});
 
-        // Check if language preference is saved
-        const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-        applyLanguage(savedLanguage);
+// Update language flag
+currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
+}
 
-        // Initialize animations
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                document.querySelectorAll('.animate').forEach((element, index) => {
-                    setTimeout(() => {
-                        element.classList.add('active');
-                    }, index * 100);
-                });
-            }, 300);
+// Check if language preference is saved
+const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+applyLanguage(savedLanguage);
+
+// Initialize animations
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+        document.querySelectorAll('.animate').forEach((element, index) => {
+            setTimeout(() => {
+                element.classList.add('active');
+            }, index * 100);
         });
-    </script>
+    }, 300);
+});
+
+// Modal functionality
+// Open modal
+openContactModalBtn.addEventListener('click', () => {
+    contactModal.classList.add('active');
+    
+    // Center the modal
+    modalContent.style.top = '50%';
+    modalContent.style.left = '50%';
+    modalContent.style.transform = 'translate(-50%, -50%)';
+});
+
+// Second button for opening modal
+if (openContactModalBtn2) {
+    openContactModalBtn2.addEventListener('click', () => {
+        contactModal.classList.add('active');
+        
+        // Center the modal
+        modalContent.style.top = '50%';
+        modalContent.style.left = '50%';
+        modalContent.style.transform = 'translate(-50%, -50%)';
+    });
+}
+
+// Close modal
+closeModalBtn.addEventListener('click', () => {
+    contactModal.classList.remove('active');
+});
+
+// Close modal when clicking outside
+contactModal.addEventListener('click', (e) => {
+    if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+    }
+});
+
+// Variables to track dragging
+let isDragging = false;
+let offsetX, offsetY;
+let startX, startY;
+
+// Viewport boundaries with padding
+const VIEWPORT_PADDING = 20;
+
+// Improved mousedown event for dragging
+modalHeader.addEventListener('mousedown', (e) => {
+    // Only start dragging on left mouse button
+    if (e.button !== 0) return;
+    
+    // Prevent default to avoid any text selection
+    e.preventDefault();
+    
+    isDragging = true;
+    
+    // Calculate the offset from the mouse position to the modal content position
+    const rect = modalContent.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    
+    // Store initial position
+    startX = e.clientX;
+    startY = e.clientY;
+    
+    // Change cursor while dragging
+    modalHeader.style.cursor = 'grabbing';
+});
+
+// Improved mousemove for smoother dragging
+document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    // Calculate new position
+    let x = e.clientX - offsetX;
+    let y = e.clientY - offsetY;
+    
+    // Get modal dimensions
+    const rect = modalContent.getBoundingClientRect();
+    const modalWidth = rect.width;
+    const modalHeight = rect.height;
+    
+    // Constrain to viewport boundaries
+    x = Math.max(VIEWPORT_PADDING, Math.min(x, window.innerWidth - modalWidth - VIEWPORT_PADDING));
+    y = Math.max(VIEWPORT_PADDING, Math.min(y, window.innerHeight - modalHeight - VIEWPORT_PADDING));
+    
+    // Move the modal
+    modalContent.style.left = x + 'px';
+    modalContent.style.top = y + 'px';
+    modalContent.style.transform = 'none';
+});
+
+// Improved mouseup for dragging
+document.addEventListener('mouseup', (e) => {
+    if (isDragging) {
+        // Calculate how far the modal was moved
+        const deltaX = Math.abs(e.clientX - startX);
+        const deltaY = Math.abs(e.clientY - startY);
+        
+        // Only consider it a click if moved less than a threshold
+        const isClick = deltaX < 5 && deltaY < 5;
+        
+        isDragging = false;
+        modalHeader.style.cursor = 'move';
+        
+        // If it was a small movement, treat it as a click rather than a drag
+        if (isClick && e.target.closest('.modal-close')) {
+            contactModal.classList.remove('active');
+        }
+    }
+});
+
+// Prevent accidental closing when clicking inside the modal
+modalContent.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
+
+// Send message functionality
+sendModalMessageBtn.addEventListener('click', () => {
+    const name = modalNameInput.value.trim();
+    const email = modalEmailInput.value.trim();
+    const subject = modalSubjectInput.value.trim();
+    const message = modalMessageInput.value.trim();
+    
+    // Validate form
+    if (!name || !email || !subject || !message) {
+        alert('Please fill in all fields');
+        return;
+    }
+    
+    // Format the message with sender info
+    const formattedMessage = `Message from: ${name} (${email})\n\n${message}`;
+    
+    // Create mailto link with subject and body
+    const mailtoLink = `mailto:guziczak@pm.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedMessage)}`;
+    
+    // Open the mail client
+    window.location.href = mailtoLink;
+    
+    // Optional: close the modal after sending
+    contactModal.classList.remove('active');
+});
+</script>
 </body>
 </html>
