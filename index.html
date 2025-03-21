@@ -58,6 +58,34 @@
             padding: 0 20px;
         }
 
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px;
+            z-index: 2000;
+            transition: top 0.3s ease;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
         /* Navigation */
         .navbar {
             position: fixed;
@@ -207,6 +235,119 @@
             color: var(--dark-text);
         }
 
+        /* Enhanced Mobile Menu */
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 70%;
+            height: 100vh;
+            background-color: var(--light-card);
+            z-index: 1500;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        
+        body.dark-mode .mobile-nav-menu {
+            background-color: var(--dark-card);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .mobile-nav-menu.active {
+            right: 0;
+        }
+        
+        .mobile-nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        body.dark-mode .mobile-nav-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-nav-title {
+            font-family: var(--heading-font);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .mobile-nav-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+            transition: var(--transition);
+        }
+        
+        body.dark-mode .mobile-nav-close {
+            color: var(--dark-text);
+        }
+        
+        .mobile-nav-close:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+        
+        .mobile-nav-items {
+            padding: 2rem;
+            list-style: none;
+        }
+        
+        .mobile-nav-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-nav-link {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        body.dark-mode .mobile-nav-link {
+            color: var(--dark-text);
+        }
+        
+        .mobile-nav-link:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+        
+        .mobile-nav-icon {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+        
+        .mobile-nav-footer {
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+        
+        body.dark-mode .mobile-nav-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .mobile-social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
         /* Hero Section */
         .hero {
             padding: 8rem 0 5rem;
@@ -224,6 +365,39 @@
             background: radial-gradient(circle, rgba(0, 112, 243, 0.1) 0%, rgba(0, 112, 243, 0) 70%);
             z-index: -1;
             border-radius: 50%;
+        }
+
+        /* Hero Particles */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--primary-color);
+            opacity: 0.3;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+            }
+            25% {
+                transform: translateY(-30px) translateX(30px);
+            }
+            50% {
+                transform: translateY(-15px) translateX(-20px);
+            }
+            75% {
+                transform: translateY(30px) translateX(10px);
+            }
         }
 
         .hero-content {
@@ -473,7 +647,7 @@
             color: var(--gray-text);
         }
 
-        /* Skills Section */
+        /* Enhanced Skills Section */
         .skills-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -485,7 +659,7 @@
             border-radius: var(--border-radius);
             padding: 2rem;
             box-shadow: var(--card-shadow);
-            transition: var(--transition);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
         }
@@ -496,7 +670,8 @@
         }
 
         .skill-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
         .skill-card::before {
@@ -507,6 +682,29 @@
             width: 5px;
             height: 100%;
             background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+        }
+
+        .skill-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 112, 243, 0.05) 0%, rgba(52, 211, 153, 0.05) 100%);
+            transform: rotate(45deg);
+            z-index: 0;
+            transition: all 0.5s ease;
+        }
+
+        .skill-card:hover::after {
+            top: -20%;
+            right: -20%;
+        }
+
+        .skill-card-content {
+            position: relative;
+            z-index: 1;
         }
 
         .skill-icon {
@@ -529,7 +727,8 @@
         .skill-item {
             margin-bottom: 0.5rem;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
+            flex-direction: column;
         }
 
         .skill-item::before {
@@ -539,7 +738,41 @@
             margin-right: 0.5rem;
         }
 
-        /* Projects Section */
+        /* Skill progress bars */
+        .skill-level {
+            margin-top: 0.5rem;
+            width: 100%;
+        }
+
+        .skill-progress-container {
+            height: 8px;
+            background-color: var(--light-bg);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.3rem;
+            width: 100%;
+        }
+
+        body.dark-mode .skill-progress-container {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 0;
+        }
+
+        .skill-level-text {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+            text-align: right;
+            margin-top: 0.3rem;
+        }
+
+        /* Enhanced Projects Section */
         .projects-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -565,6 +798,24 @@
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 2;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .project-img {
             width: 100%;
             height: 180px;
@@ -574,6 +825,22 @@
 
         .project-card:hover .project-img {
             transform: scale(1.05);
+        }
+
+        .project-img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover .project-img-overlay {
+            opacity: 1;
         }
 
         .project-content {
@@ -594,6 +861,30 @@
             line-height: 1.5;
         }
 
+        .project-tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-tech-tag {
+            font-size: 0.7rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 50px;
+            background-color: rgba(0, 112, 243, 0.1);
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        body.dark-mode .project-tech-tag {
+            background-color: rgba(0, 112, 243, 0.2);
+        }
+
+        .project-card:hover .project-tech-tag {
+            transform: translateY(-2px);
+        }
+
         .project-links {
             display: flex;
             justify-content: space-between;
@@ -612,6 +903,239 @@
         }
 
         .project-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Games Section */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background-color: var(--light-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        body.dark-mode .game-card {
+            background-color: var(--dark-card);
+            box-shadow: var(--dark-card-shadow);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .game-img-container {
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 112, 243, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+        }
+
+        .game-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 20%;
+            transition: var(--transition);
+        }
+
+        .game-card:hover .game-img {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .game-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-title {
+            font-family: var(--heading-font);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+
+        .game-description {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .game-links {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .game-btn {
+            padding: 0.7rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+        }
+
+        .play-btn {
+            background-color: var(--primary-color);
+            color: white;
+            margin-right: 0.5rem;
+        }
+
+        .play-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .code-btn {
+            background-color: transparent;
+            color: var(--light-text);
+            border: 2px solid var(--primary-color);
+        }
+
+        body.dark-mode .code-btn {
+            color: var(--dark-text);
+        }
+
+        .code-btn:hover {
+            background-color: rgba(0, 112, 243, 0.1);
+        }
+
+        /* Enhanced Certificate Section */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background-color: var(--light-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        body.dark-mode .certificate-card {
+            background-color: var(--dark-card);
+            box-shadow: var(--dark-card-shadow);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .certificate-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .certificate-card:hover::after {
+            transform: scaleX(1);
+        }
+
+        .certificate-logo {
+            height: 80px;
+            width: 80px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-right: 1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .certificate-card:hover .certificate-logo {
+            transform: scale(1.1);
+        }
+
+        .certificate-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .certificate-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .certificate-info {
+            flex: 1;
+        }
+
+        .certificate-name {
+            font-family: var(--heading-font);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .certificate-issuer {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        .certificate-content {
+            padding: 1.5rem;
+        }
+
+        .certificate-date {
+            color: var(--gray-text);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .certificate-description {
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .view-certificate {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            gap: 0.3rem;
+        }
+
+        .view-certificate:hover {
             color: var(--primary-dark);
             transform: translateX(5px);
         }
@@ -664,7 +1188,7 @@
             font-size: 0.95rem;
         }
 
-        /* Contact Section */
+        /* Enhanced Contact Section */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -789,20 +1313,22 @@
             align-self: center;
         }
 
+        /* Enhanced Form Group */
         .form-group {
-            margin-bottom: 1.5rem;
+            position: relative;
+            margin-bottom: 2rem;
         }
 
         .form-control {
             width: 100%;
-            padding: 1rem;
+            padding: 1.2rem 1rem 0.8rem;
             border: 1px solid #e2e8f0;
             border-radius: 0.5rem;
             font-family: inherit;
             font-size: 1rem;
             background-color: var(--light-bg);
             color: var(--light-text);
-            transition: var(--transition);
+            transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         body.dark-mode .form-control {
@@ -814,19 +1340,104 @@
         .form-control:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.2);
+            box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.1);
         }
 
-        .form-control::placeholder {
+        .form-label {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 1rem;
             color: var(--gray-text);
+            pointer-events: none;
+            transition: all 0.3s ease;
         }
 
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
+        .form-control:focus ~ .form-label,
+        .form-control:not(:placeholder-shown) ~ .form-label {
+            top: 0.4rem;
+            left: 0.7rem;
+            font-size: 0.7rem;
+            color: var(--primary-color);
         }
 
-        /* Modal */
+        textarea.form-control ~ .form-label {
+            top: 1rem;
+        }
+
+        textarea.form-control:focus ~ .form-label,
+        textarea.form-control:not(:placeholder-shown) ~ .form-label {
+            top: 0.4rem;
+        }
+
+        .form-error {
+            font-size: 0.8rem;
+            color: #e53e3e;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error .form-control {
+            border-color: #e53e3e;
+            box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.1);
+        }
+
+        .form-group.error .form-error {
+            display: block;
+        }
+
+        .form-group.success .form-control {
+            border-color: var(--secondary-color);
+        }
+
+        .form-group.success .form-label {
+            color: var(--secondary-color);
+        }
+
+        .form-feedback {
+            display: flex;
+            align-items: center;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            gap: 0.3rem;
+        }
+
+        .form-feedback-icon {
+            font-size: 1rem;
+        }
+
+        .form-feedback.error {
+            color: #e53e3e;
+        }
+
+        .form-feedback.success {
+            color: var(--secondary-color);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            margin-right: 0.5rem;
+            display: none;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn.loading .spinner {
+            display: inline-block;
+        }
+
+        /* Enhanced Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -879,6 +1490,13 @@
             max-height: 90vh;
             display: flex;
             flex-direction: column;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        body.dark-mode .modal-content.draggable {
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.4);
         }
 
         .modal-header {
@@ -922,6 +1540,30 @@
         .modal-body {
             padding: 1.5rem;
             overflow-y: auto;
+        }
+
+        .modal-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .modal-success-icon {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .modal-success-title {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-success-message {
+            color: var(--gray-text);
+            margin-bottom: 1.5rem;
         }
 
         /* Footer */
@@ -1013,249 +1655,6 @@
             transform: translateY(-5px);
         }
 
-        /* Skill Sliders */
-        .skill-progress {
-            margin-top: 0.5rem;
-            height: 8px;
-            background-color: var(--light-bg);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        body.dark-mode .skill-progress {
-            background-color: var(--dark-bg);
-        }
-
-        .skill-progress .progress-bar {
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            border-radius: 4px;
-            width: 0;
-            transition: width 1s ease-in-out;
-        }
-
-        /* Animations */
-        .animate {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-
-        .animate.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Games Section Specific Styles */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .game-card {
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        body.dark-mode .game-card {
-            background-color: var(--dark-card);
-            box-shadow: var(--dark-card-shadow);
-        }
-
-        .game-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .game-img-container {
-            padding: 2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            background: linear-gradient(135deg, rgba(0, 112, 243, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
-        }
-
-        .game-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 20%;
-            transition: var(--transition);
-        }
-
-        .game-card:hover .game-img {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .game-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .game-title {
-            font-family: var(--heading-font);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-
-        .game-description {
-            color: var(--gray-text);
-            font-size: 0.95rem;
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .game-links {
-            margin-top: auto;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .game-btn {
-            padding: 0.7rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            flex: 1;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-        }
-
-        .play-btn {
-            background-color: var(--primary-color);
-            color: white;
-            margin-right: 0.5rem;
-        }
-
-        .play-btn:hover {
-            background-color: var(--primary-dark);
-        }
-
-        .code-btn {
-            background-color: transparent;
-            color: var(--light-text);
-            border: 2px solid var(--primary-color);
-        }
-
-        body.dark-mode .code-btn {
-            color: var(--dark-text);
-        }
-
-        .code-btn:hover {
-            background-color: rgba(0, 112, 243, 0.1);
-        }
-
-        /* Certificate Section */
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .certificate-card {
-            background-color: var(--light-card);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: var(--transition);
-        }
-
-        body.dark-mode .certificate-card {
-            background-color: var(--dark-card);
-            box-shadow: var(--dark-card-shadow);
-        }
-
-        .certificate-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .certificate-logo {
-            height: 80px;
-            width: 80px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-right: 1rem;
-        }
-
-        .certificate-header {
-            padding: 1.5rem;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        body.dark-mode .certificate-header {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .certificate-info {
-            flex: 1;
-        }
-
-        .certificate-name {
-            font-family: var(--heading-font);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .certificate-issuer {
-            color: var(--gray-text);
-            font-size: 0.9rem;
-        }
-
-        .certificate-content {
-            padding: 1.5rem;
-        }
-
-        .certificate-date {
-            color: var(--gray-text);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .certificate-description {
-            color: var(--gray-text);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .view-certificate {
-            display: inline-flex;
-            align-items: center;
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            gap: 0.3rem;
-        }
-
-        .view-certificate:hover {
-            color: var(--primary-dark);
-            transform: translateX(5px);
-        }
-
         /* Language switcher dropdown */
         .lang-dropdown {
             position: relative;
@@ -1321,6 +1720,105 @@
 
         body.dark-mode .lang-name {
             color: var(--dark-text);
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        body.dark-mode ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--primary-color), var(--secondary-color));
+            border-radius: 6px;
+            border: 3px solid var(--light-bg);
+        }
+
+        body.dark-mode ::-webkit-scrollbar-thumb {
+            border-color: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Image Optimizations */
+        .lazy-load {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .lazy-load.loaded {
+            opacity: 1;
+        }
+
+        /* Accessibility Improvements */
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* Print Styles */
+        @media print {
+            .navbar, .footer, .back-to-top, .hero-cta, .social-links, .contact-section {
+                display: none !important;
+            }
+            
+            body {
+                color: black;
+                background: white;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+                margin-bottom: 1cm;
+            }
+            
+            .hero-title {
+                background: none;
+                -webkit-text-fill-color: black;
+                font-size: 24pt;
+            }
+            
+            .hero-subtitle {
+                font-size: 16pt;
+                color: black;
+            }
+            
+            .section-title::after {
+                display: none;
+            }
+            
+            a {
+                text-decoration: none;
+                color: black;
+            }
+            
+            a::after {
+                content: " (" attr(href) ")";
+                font-size: 0.8em;
+                color: #666;
+            }
+        }
+
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
         }
 
         /* Responsive Styles */
@@ -1441,11 +1939,14 @@
     </style>
 </head>
 <body>
+    <!-- Accessibility Skip Link -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <!-- Navbar -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" role="navigation">
         <div class="container nav-container">
             <a href="#" class="logo">
-                <img src="photo.jpg" alt="Logo" class="logo-img">
+                <img src="photo.jpg" alt="Łukasz Guziczak" class="logo-img">
                 <span>Łukasz Guziczak</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -1459,7 +1960,7 @@
             </ul>
             <div class="utility-buttons">
                 <div class="lang-dropdown">
-                    <button class="lang-btn" id="langToggle">
+                    <button class="lang-btn" id="langToggle" aria-label="Change language">
                         <img src="uk.svg" alt="English" id="currentLangFlag">
                     </button>
                     <div class="lang-options">
@@ -1473,927 +1974,1237 @@
                         </div>
                     </div>
                 </div>
-                <button class="theme-btn" id="themeToggle">
+                <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon" id="themeIcon"></i>
                 </button>
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open mobile menu">
                     <i class="fas fa-bars" id="menuIcon"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text animate">
-                    <h1 class="hero-title" id="heroTitle">Full-stack Developer & Analyst</h1>
-                    <h2 class="hero-subtitle" id="heroSubtitle">Turning Ideas into Digital Reality</h2>
-                    <p class="hero-description" id="heroDescription">
-                        Passionate about creating efficient, scalable solutions with modern technologies.
-                        I specialize in Java, Python, React, and cloud infrastructure development.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="#contact" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            <span id="ctaContact">Contact Me</span>
-                        </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            <i class="fas fa-code"></i>
-                            <span id="ctaProjects">View Projects</span>
-                        </a>
-                    </div>
-                    <div class="social-links">
-                        <a href="https://github.com/guziczak" class="social-btn" target="_blank">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://linkedin.com/in/guziczak" class="social-btn" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:guziczak@pm.me" class="social-btn">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="tel:+48693069832" class="social-btn">
-                            <i class="fas fa-phone-alt"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image animate" style="animation-delay: 0.3s;">
-                    <div class="profile-container">
-                        <div class="profile-bg"></div>
-                        <img src="photo.jpg" alt="Łukasz Guziczak" class="profile-img">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title animate" id="aboutTitle">About Me</h2>
-            <div class="about-content">
-                <div class="about-text animate">
-                    <p class="about-description" id="aboutDescription">
-                        I'm a Full-stack Developer and Analyst with a passion for building efficient and scalable applications.
-                        With extensive experience in both front-end and back-end technologies, I enjoy solving complex problems and optimizing systems.
-                        I'm always eager to learn new technologies and methodologies to improve my skills and deliver better results.
-                    </p>
-                    <p class="about-description" id="aboutExperience">
-                        Throughout my career, I've worked on various projects ranging from enterprise-level applications to small interactive tools.
-                        I believe in clean code, robust architecture, and user-centered design principles.
-                    </p>
-                    <div class="about-stats animate" style="animation-delay: 0.3s;">
-                        <div class="stat-item">
-                            <div class="stat-number" id="yearsExperience">5+</div>
-                            <div class="stat-label" id="yearsExperienceLabel">Years Experience</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="projectsCompleted">50+</div>
-                            <div class="stat-label" id="projectsCompletedLabel">Projects Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number" id="happyClients">30+</div>
-                            <div class="stat-label" id="happyClientsLabel">Happy Clients</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="section" id="skills">
-        <div class="container">
-            <h2 class="section-title animate" id="skillsTitle">My Skills</h2>
-            <div class="skills-list">
-                <div class="skill-card animate">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3 class="skill-title" id="programmingTitle">Programming Languages</h3>
-                    <ul class="skill-items">
-                        <li class="skill-item">Java</li>
-                        <li class="skill-item">Python</li>
-                        <li class="skill-item">JavaScript / TypeScript</li>
-                        <li class="skill-item">SQL</li>
-                        <li class="skill-item">HTML/CSS</li>
-                    </ul>
-                </div>
-                <div class="skill-card animate" style="animation-delay: 0.2s;">
-                    <div class="skill-icon">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3 class="skill-title" id="frameworksTitle">Frameworks & Libraries</h3>
-                    <ul class="skill-items">
-                        <li class="skill-item">Spring Framework</li>
-                        <li class="skill-item">React.js</li>
-                        <li class="skill-item">Node.js</li>
-                        <li class="skill-item">Django</li>
-                        <li class="skill-item">Express.js</li>
-                    </ul>
-                </div>
-                <div class="skill-card animate" style="animation-delay: 0.3s;">
-                    <div class="skill-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3 class="skill-title" id="cloudTitle">Cloud & DevOps</h3>
-                    <ul class="skill-items">
-                        <li class="skill-item">AWS</li>
-                        <li class="skill-item">Azure</li>
-                        <li class="skill-item">Docker</li>
-                        <li class="skill-item">Kubernetes</li>
-                        <li class="skill-item">CI/CD (Jenkins, GitHub Actions)</li>
-                    </ul>
-                </div>
-                <div class="skill-card animate" style="animation-delay: 0.4s;">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3 class="skill-title" id="databaseTitle">Databases</h3>
-                    <ul class="skill-items">
-                        <li class="skill-item">PostgreSQL</li>
-                        <li class="skill-item">MongoDB</li>
-                        <li class="skill-item">MySQL/MariaDB</li>
-                        <li class="skill-item">Redis</li>
-                        <li class="skill-item">Elasticsearch</li>
-                    </ul>
-                </div>
-                <div class="skill-card animate" style="animation-delay: 0.5s;">
-                    <div class="skill-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 class="skill-title" id="architectureTitle">Architecture & Methodologies</h3>
-                    <ul class="skill-items">
-                        <li class="skill-item">Microservices</li>
-                        <li class="skill-item">REST APIs</li>
-                        <li class="skill-item">GraphQL</li>
-                        <li class="skill-item">Agile/Scrum</li>
-                        <li class="skill-item">Test-Driven Development</li>
-                    </ul>
-                </div>
-                <div class="skill-card animate" style="animation-delay: 0.6s;">
-                    <div class="skill-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3 class="skill-title" id="aiTitle">AI & Tools</h3>
-                    <ul class="skill-items">
-                        <li class="skill-item">ChatGPT</li>
-                        <li class="skill-item">DeepSeek</li>
-                        <li class="skill-item">Copilot</li>
-                        <li class="skill-item">Data Analysis</li>
-                        <li class="skill-item">Machine Learning Basics</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section" id="projects">
-        <div class="container">
-            <h2 class="section-title animate" id="projectsTitle">Recent Projects</h2>
-            <div class="projects-container">
-                <div class="project-card animate">
-                    <img src="/api/placeholder/400/320" alt="Project Image" class="project-img">
-                    <div class="project-content">
-                        <h3 class="project-title">Automatic Analysis System</h3>
-                        <p class="project-description" id="project1Desc">
-                            Developed a system for automatic data analysis with user preset capabilities, improving analysis efficiency by 40%.
+    <!-- Main Content -->
+    <main id="main">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text animate">
+                        <h1 class="hero-title" id="heroTitle">Full-stack Developer & Analyst</h1>
+                        <h2 class="hero-subtitle" id="heroSubtitle">Turning Ideas into Digital Reality</h2>
+                        <p class="hero-description" id="heroDescription">
+                            Passionate about creating efficient, scalable solutions with modern technologies.
+                            I specialize in Java, Python, React, and cloud infrastructure development.
                         </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> 
-                                <span id="viewProject">View Project</span>
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-code"></i>
-                                <span id="viewCode">View Code</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card animate" style="animation-delay: 0.2s;">
-                    <img src="/api/placeholder/400/320" alt="Project Image" class="project-img">
-                    <div class="project-content">
-                        <h3 class="project-title">Exception Management Platform</h3>
-                        <p class="project-description" id="project2Desc">
-                            Built a comprehensive exception tracking system with email notifications, reducing error resolution time by 60%.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span id="viewProject2">View Project</span>
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-code"></i>
-                                <span id="viewCode2">View Code</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card animate" style="animation-delay: 0.3s;">
-                    <img src="/api/placeholder/400/320" alt="Project Image" class="project-img">
-                    <div class="project-content">
-                        <h3 class="project-title">SQL Query Optimizer</h3>
-                        <p class="project-description" id="project3Desc">
-                            Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span id="viewProject3">View Project</span>
-                            </a>
-                            <a href="#" class="project-link">
-                                <i class="fas fa-code"></i>
-                                <span id="viewCode3">View Code</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Games Section -->
-    <section class="section" id="games">
-        <div class="container">
-            <h2 class="section-title animate" id="gamesTitle">My Games</h2>
-            <p class="animate" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;" id="gamesDescription">
-                Check out the games I've developed using JavaScript and HTML5 Canvas. Feel free to play them online or explore the source code on GitHub.
-            </p>
-            <div class="games-grid">
-                <div class="game-card animate">
-                    <div class="game-img-container">
-                        <img src="resources/icons/cosmic-shooter.svg" alt="Cosmic Shooter" class="game-img">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Cosmic Shooter</h3>
-                        <p class="game-description">A space-themed shooter game with multiple levels and power-ups.</p>
-                        <div class="game-links">
-                            <a href="https://guziczak.github.io/games/cosmic-shooter" class="game-btn play-btn">
-                                <i class="fas fa-play"></i> Play
-                            </a>
-                            <a href="https://github.com/guziczak/games/blob/main/cosmic-shooter/index.html" class="game-btn code-btn">
-                                <i class="fas fa-code"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-card animate" style="animation-delay: 0.2s;">
-                    <div class="game-img-container">
-                        <img src="resources/icons/speed-dash.svg" alt="Speed Dash" class="game-img">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Speed Dash</h3>
-                        <p class="game-description">A fast-paced racing game with multiple tracks and vehicles.</p>
-                        <div class="game-links">
-                            <a href="https://guziczak.github.io/games/speed-dash" class="game-btn play-btn">
-                                <i class="fas fa-play"></i> Play
-                            </a>
-                            <a href="https://github.com/guziczak/games/blob/main/speed-dash/index.html" class="game-btn code-btn">
-                                <i class="fas fa-code"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-card animate" style="animation-delay: 0.3s;">
-                    <div class="game-img-container">
-                        <img src="resources/icons/sky-dodge.svg" alt="Sky Dodge" class="game-img">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Sky Dodge</h3>
-                        <p class="game-description">An aerial dodge game with increasing difficulty and obstacles.</p>
-                        <div class="game-links">
-                            <a href="https://guziczak.github.io/games/sky-dodge" class="game-btn play-btn">
-                                <i class="fas fa-play"></i> Play
-                            </a>
-                            <a href="https://github.com/guziczak/games/blob/main/sky-dodge/index.html" class="game-btn code-btn">
-                                <i class="fas fa-code"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-card animate" style="animation-delay: 0.4s;">
-                    <div class="game-img-container">
-                        <img src="resources/icons/snake-quest.svg" alt="Snake Quest" class="game-img">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Snake Quest</h3>
-                        <p class="game-description">A modern take on the classic snake game with special power-ups.</p>
-                        <div class="game-links">
-                            <a href="https://guziczak.github.io/games/snake-quest" class="game-btn play-btn">
-                                <i class="fas fa-play"></i> Play
-                            </a>
-                            <a href="https://github.com/guziczak/games/blob/main/snake-quest/index.html" class="game-btn code-btn">
-                                <i class="fas fa-code"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="game-card animate" style="animation-delay: 0.5s;">
-                    <div class="game-img-container">
-                        <img src="resources/icons/icy-tower.svg" alt="Icy Tower" class="game-img">
-                    </div>
-                    <div class="game-content">
-                        <h3 class="game-title">Icy Tower</h3>
-                        <p class="game-description">A vertical platformer game with random platforms and collectibles.</p>
-                        <div class="game-links">
-                            <a href="https://guziczak.github.io/games/icy-tower" class="game-btn play-btn">
-                                <i class="fas fa-play"></i> Play
-                            </a>
-                            <a href="https://github.com/guziczak/games/blob/main/icy-tower/index.html" class="game-btn code-btn">
-                                <i class="fas fa-code"></i> Code
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certificates Section -->
-    <section class="section" id="certificates">
-        <div class="container">
-            <h2 class="section-title animate" id="certificatesTitle">Certificates</h2>
-            <div class="certificates-grid">
-                <div class="certificate-card animate">
-                    <div class="certificate-header">
-                        <img src="/api/placeholder/400/320" alt="Certificate Logo" class="certificate-logo">
-                        <div class="certificate-info">
-                            <h3 class="certificate-name">AWS Certified Developer</h3>
-                            <p class="certificate-issuer">Amazon Web Services</p>
-                        </div>
-                    </div>
-                    <div class="certificate-content">
-                        <p class="certificate-date">
-                            <i class="far fa-calendar-alt"></i> Issued: Jan 2023
-                        </p>
-                        <p class="certificate-description" id="cert1Desc">
-                            Validated expertise in developing and maintaining AWS-based applications, using core AWS services, best practices for application development.
-                        </p>
-                        <a href="certificates.html" class="view-certificate">
-                            <span id="viewCertificate">View Certificate</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="certificate-card animate" style="animation-delay: 0.2s;">
-                    <div class="certificate-header">
-                        <img src="/api/placeholder/400/320" alt="Certificate Logo" class="certificate-logo">
-                        <div class="certificate-info">
-                            <h3 class="certificate-name">Certified Spring Professional</h3>
-                            <p class="certificate-issuer">VMware</p>
-                        </div>
-                    </div>
-                    <div class="certificate-content">
-                        <p class="certificate-date">
-                            <i class="far fa-calendar-alt"></i> Issued: May 2022
-                        </p>
-                        <p class="certificate-description" id="cert2Desc">
-                            Demonstrates knowledge of Spring Framework core, Spring MVC, Spring Boot, Spring Data, and Spring Security.
-                        </p>
-                        <a href="certificates.html" class="view-certificate">
-                            <span id="viewCertificate2">View Certificate</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="certificate-card animate" style="animation-delay: 0.3s;">
-                    <div class="certificate-header">
-                        <img src="/api/placeholder/400/320" alt="Certificate Logo" class="certificate-logo">
-                        <div class="certificate-info">
-                            <h3 class="certificate-name">Professional Scrum Master</h3>
-                            <p class="certificate-issuer">Scrum.org</p>
-                        </div>
-                    </div>
-                    <div class="certificate-content">
-                        <p class="certificate-date">
-                            <i class="far fa-calendar-alt"></i> Issued: Oct 2021
-                        </p>
-                        <p class="certificate-description" id="cert3Desc">
-                            Certified in understanding of Scrum framework, values, and practices, with ability to apply Scrum in complex environments.
-                        </p>
-                        <a href="certificates.html" class="view-certificate">
-                            <span id="viewCertificate3">View Certificate</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Achievements Section -->
-    <section class="section" id="achievements">
-        <div class="container">
-            <h2 class="section-title animate" id="achievementsTitle">Achievements</h2>
-            <div class="achievements-list">
-                <div class="achievement-card animate">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="achievement-title" id="achievement1Title">Implementation of User Preset System</h3>
-                    <p class="achievement-description" id="achievement1Desc">
-                        Developed and implemented a user preset saving functionality for automatic analysis, reducing analysis preparation time by 70% and improving workflow efficiency.
-                    </p>
-                </div>
-                <div class="achievement-card animate" style="animation-delay: 0.2s;">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="achievement-title" id="achievement2Title">Exception Management System</h3>
-                    <p class="achievement-description" id="achievement2Desc">
-                        Built a comprehensive exception management system with email notifications, reducing error resolution time by 60% and improving system reliability.
-                    </p>
-                </div>
-                <div class="achievement-card animate" style="animation-delay: 0.3s;">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="achievement-title" id="achievement3Title">SQL Query Optimization</h3>
-                    <p class="achievement-description" id="achievement3Desc">
-                        Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution and improved overall application responsiveness.
-                    </p>
-                </div>
-                <div class="achievement-card animate" style="animation-delay: 0.4s;">
-                    <div class="achievement-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <h3 class="achievement-title" id="achievement4Title">ERP System Integration</h3>
-                    <p class="achievement-description" id="achievement4Desc">
-                        Successfully integrated fiscal and label printers in the ERP system, streamlining operations and reducing manual processes by 40%.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <h2 class="section-title animate" id="contactTitle">Contact Me</h2>
-            <div class="contact-container">
-                <div class="contact-info animate">
-                    <h3 class="contact-title" id="contactInfoTitle">Get In Touch</h3>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text" id="contactLocation">
-                            Wrocław, Poland
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <a href="mailto:guziczak@pm.me">guziczak@pm.me</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <a href="tel:+48693069832">+48 693 069 832</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="contact-text">
-                            <a href="https://github.com/guziczak" target="_blank">github.com/guziczak</a>
-                        </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin-in"></i>
-                        </div>
-                        <div class="contact-text">
-                            <a href="https://linkedin.com/in/guziczak" target="_blank">linkedin.com/in/guziczak</a>
-                        </div>
-                    </div>
-                    <div class="contact-action animate" style="margin-top: 2rem;">
-                        <button id="openContactModalBtn" class="btn btn-primary">
-                            <i class="fas fa-paper-plane"></i>
-                            <span id="openModalText">Send Me a Message</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Right side with a card -->
-                <div class="contact-visual animate" style="animation-delay: 0.2s;">
-                    <div class="contact-card">
-                        <div class="contact-card-header">
-                            <i class="fas fa-comment-dots contact-card-icon"></i>
-                            <h4 class="contact-card-title" id="contactCardTitle">Let's Connect</h4>
-                        </div>
-                        <div class="contact-card-body">
-                            <p class="contact-card-text" id="contactCardText">
-                                Feel free to reach out for job opportunities, collaborations, or just to say hello. 
-                                I'm always interested in new projects and challenges!
-                            </p>
-                            <button id="openContactModalBtn2" class="btn btn-primary contact-card-btn">
+                        <div class="hero-cta">
+                            <a href="#contact" class="btn btn-primary">
                                 <i class="fas fa-paper-plane"></i>
-                                <span id="openModalText2">Send Message</span>
+                                <span id="ctaContact">Contact Me</span>
+                            </a>
+                            <a href="#projects" class="btn btn-secondary">
+                                <i class="fas fa-code"></i>
+                                <span id="ctaProjects">View Projects</span>
+                            </a>
+                        </div>
+                        <div class="social-links">
+                            <a href="https://github.com/guziczak" class="social-btn" target="_blank" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/guziczak" class="social-btn" target="_blank" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:guziczak@pm.me" class="social-btn" aria-label="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="tel:+48693069832" class="social-btn" aria-label="Phone">
+                                <i class="fas fa-phone-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image animate" style="animation-delay: 0.3s;">
+                        <div class="profile-container">
+                            <div class="profile-bg"></div>
+                            <img src="photo.jpg" alt="Łukasz Guziczak" class="profile-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" id="about">
+            <div class="container">
+                <h2 class="section-title animate" id="aboutTitle">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text animate">
+                        <p class="about-description" id="aboutDescription">
+                            I'm a Full-stack Developer and Analyst with a passion for building efficient and scalable applications.
+                            With extensive experience in both front-end and back-end technologies, I enjoy solving complex problems and optimizing systems.
+                            I'm always eager to learn new technologies and methodologies to improve my skills and deliver better results.
+                        </p>
+                        <p class="about-description" id="aboutExperience">
+                            Throughout my career, I've worked on various projects ranging from enterprise-level applications to small interactive tools.
+                            I believe in clean code, robust architecture, and user-centered design principles.
+                        </p>
+                        <div class="about-stats animate" style="animation-delay: 0.3s;">
+                            <div class="stat-item">
+                                <div class="stat-number" id="yearsExperience">5+</div>
+                                <div class="stat-label" id="yearsExperienceLabel">Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="projectsCompleted">50+</div>
+                                <div class="stat-label" id="projectsCompletedLabel">Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" id="happyClients">30+</div>
+                                <div class="stat-label" id="happyClientsLabel">Happy Clients</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="section" id="skills">
+            <div class="container">
+                <h2 class="section-title animate" id="skillsTitle">My Skills</h2>
+                <div class="skills-list">
+                    <div class="skill-card animate">
+                        <div class="skill-card-content">
+                            <div class="skill-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="skill-title" id="programmingTitle">Programming Languages</h3>
+                            <ul class="skill-items">
+                                <li class="skill-item">Java</li>
+                                <li class="skill-item">Python</li>
+                                <li class="skill-item">JavaScript / TypeScript</li>
+                                <li class="skill-item">SQL</li>
+                                <li class="skill-item">HTML/CSS</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card animate" style="animation-delay: 0.2s;">
+                        <div class="skill-card-content">
+                            <div class="skill-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <h3 class="skill-title" id="frameworksTitle">Frameworks & Libraries</h3>
+                            <ul class="skill-items">
+                                <li class="skill-item">Spring Framework</li>
+                                <li class="skill-item">React.js</li>
+                                <li class="skill-item">Node.js</li>
+                                <li class="skill-item">Django</li>
+                                <li class="skill-item">Express.js</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card animate" style="animation-delay: 0.3s;">
+                        <div class="skill-card-content">
+                            <div class="skill-icon">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="skill-title" id="cloudTitle">Cloud & DevOps</h3>
+                            <ul class="skill-items">
+                                <li class="skill-item">AWS</li>
+                                <li class="skill-item">Azure</li>
+                                <li class="skill-item">Docker</li>
+                                <li class="skill-item">Kubernetes</li>
+                                <li class="skill-item">CI/CD (Jenkins, GitHub Actions)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card animate" style="animation-delay: 0.4s;">
+                        <div class="skill-card-content">
+                            <div class="skill-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="skill-title" id="databaseTitle">Databases</h3>
+                            <ul class="skill-items">
+                                <li class="skill-item">PostgreSQL</li>
+                                <li class="skill-item">MongoDB</li>
+                                <li class="skill-item">MySQL/MariaDB</li>
+                                <li class="skill-item">Redis</li>
+                                <li class="skill-item">Elasticsearch</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card animate" style="animation-delay: 0.5s;">
+                        <div class="skill-card-content">
+                            <div class="skill-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="skill-title" id="architectureTitle">Architecture & Methodologies</h3>
+                            <ul class="skill-items">
+                                <li class="skill-item">Microservices</li>
+                                <li class="skill-item">REST APIs</li>
+                                <li class="skill-item">GraphQL</li>
+                                <li class="skill-item">Agile/Scrum</li>
+                                <li class="skill-item">Test-Driven Development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card animate" style="animation-delay: 0.6s;">
+                        <div class="skill-card-content">
+                            <div class="skill-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3 class="skill-title" id="aiTitle">AI & Tools</h3>
+                            <ul class="skill-items">
+                                <li class="skill-item">ChatGPT</li>
+                                <li class="skill-item">DeepSeek</li>
+                                <li class="skill-item">Copilot</li>
+                                <li class="skill-item">Data Analysis</li>
+                                <li class="skill-item">Machine Learning Basics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="section" id="projects">
+            <div class="container">
+                <h2 class="section-title animate" id="projectsTitle">Recent Projects</h2>
+                <div class="projects-container">
+                    <div class="project-card animate">
+                        <img src="/api/placeholder/400/320" alt="Automatic Analysis System" class="project-img lazy-load" data-src="/api/placeholder/400/320">
+                        <div class="project-img-overlay"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Automatic Analysis System</h3>
+                            <p class="project-description" id="project1Desc">
+                                Developed a system for automatic data analysis with user preset capabilities, improving analysis efficiency by 40%.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Java</span>
+                                <span class="project-tech-tag">Spring Boot</span>
+                                <span class="project-tech-tag">React</span>
+                                <span class="project-tech-tag">PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i> 
+                                    <span id="viewProject">View Project</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-code"></i>
+                                    <span id="viewCode">View Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card animate" style="animation-delay: 0.2s;">
+                        <img src="/api/placeholder/400/320" alt="Exception Management Platform" class="project-img lazy-load" data-src="/api/placeholder/400/320">
+                        <div class="project-img-overlay"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">Exception Management Platform</h3>
+                            <p class="project-description" id="project2Desc">
+                                Built a comprehensive exception tracking system with email notifications, reducing error resolution time by 60%.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">Python</span>
+                                <span class="project-tech-tag">Django</span>
+                                <span class="project-tech-tag">Redis</span>
+                                <span class="project-tech-tag">Bootstrap</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span id="viewProject2">View Project</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-code"></i>
+                                    <span id="viewCode2">View Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card animate" style="animation-delay: 0.3s;">
+                        <img src="/api/placeholder/400/320" alt="SQL Query Optimizer" class="project-img lazy-load" data-src="/api/placeholder/400/320">
+                        <div class="project-img-overlay"></div>
+                        <div class="project-content">
+                            <h3 class="project-title">SQL Query Optimizer</h3>
+                            <p class="project-description" id="project3Desc">
+                                Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution.
+                            </p>
+                            <div class="project-tech-tags">
+                                <span class="project-tech-tag">SQL</span>
+                                <span class="project-tech-tag">MongoDB</span>
+                                <span class="project-tech-tag">Node.js</span>
+                                <span class="project-tech-tag">Performance Testing</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span id="viewProject3">View Project</span>
+                                </a>
+                                <a href="#" class="project-link">
+                                    <i class="fas fa-code"></i>
+                                    <span id="viewCode3">View Code</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="section" id="games">
+            <div class="container">
+                <h2 class="section-title animate" id="gamesTitle">My Games</h2>
+                <p class="animate" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;" id="gamesDescription">
+                    Check out the games I've developed using JavaScript and HTML5 Canvas. Feel free to play them online or explore the source code on GitHub.
+                </p>
+                <div class="games-grid">
+                    <div class="game-card animate">
+                        <div class="game-img-container">
+                            <img src="resources/icons/cosmic-shooter.svg" alt="Cosmic Shooter" class="game-img lazy-load" data-src="resources/icons/cosmic-shooter.svg">
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">Cosmic Shooter</h3>
+                            <p class="game-description">A space-themed shooter game with multiple levels and power-ups.</p>
+                            <div class="game-links">
+                                <a href="https://guziczak.github.io/games/cosmic-shooter" class="game-btn play-btn">
+                                    <i class="fas fa-play"></i> Play
+                                </a>
+                                <a href="https://github.com/guziczak/games/blob/main/cosmic-shooter/index.html" class="game-btn code-btn">
+                                    <i class="fas fa-code"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card animate" style="animation-delay: 0.2s;">
+                        <div class="game-img-container">
+                            <img src="resources/icons/speed-dash.svg" alt="Speed Dash" class="game-img lazy-load" data-src="resources/icons/speed-dash.svg">
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">Speed Dash</h3>
+                            <p class="game-description">A fast-paced racing game with multiple tracks and vehicles.</p>
+                            <div class="game-links">
+                                <a href="https://guziczak.github.io/games/speed-dash" class="game-btn play-btn">
+                                    <i class="fas fa-play"></i> Play
+                                </a>
+                                <a href="https://github.com/guziczak/games/blob/main/speed-dash/index.html" class="game-btn code-btn">
+                                    <i class="fas fa-code"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card animate" style="animation-delay: 0.3s;">
+                        <div class="game-img-container">
+                            <img src="resources/icons/sky-dodge.svg" alt="Sky Dodge" class="game-img lazy-load" data-src="resources/icons/sky-dodge.svg">
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">Sky Dodge</h3>
+                            <p class="game-description">An aerial dodge game with increasing difficulty and obstacles.</p>
+                            <div class="game-links">
+                                <a href="https://guziczak.github.io/games/sky-dodge" class="game-btn play-btn">
+                                    <i class="fas fa-play"></i> Play
+                                </a>
+                                <a href="https://github.com/guziczak/games/blob/main/sky-dodge/index.html" class="game-btn code-btn">
+                                    <i class="fas fa-code"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card animate" style="animation-delay: 0.4s;">
+                        <div class="game-img-container">
+                            <img src="resources/icons/snake-quest.svg" alt="Snake Quest" class="game-img lazy-load" data-src="resources/icons/snake-quest.svg">
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">Snake Quest</h3>
+                            <p class="game-description">A modern take on the classic snake game with special power-ups.</p>
+                            <div class="game-links">
+                                <a href="https://guziczak.github.io/games/snake-quest" class="game-btn play-btn">
+                                    <i class="fas fa-play"></i> Play
+                                </a>
+                                <a href="https://github.com/guziczak/games/blob/main/snake-quest/index.html" class="game-btn code-btn">
+                                    <i class="fas fa-code"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-card animate" style="animation-delay: 0.5s;">
+                        <div class="game-img-container">
+                            <img src="resources/icons/icy-tower.svg" alt="Icy Tower" class="game-img lazy-load" data-src="resources/icons/icy-tower.svg">
+                        </div>
+                        <div class="game-content">
+                            <h3 class="game-title">Icy Tower</h3>
+                            <p class="game-description">A vertical platformer game with random platforms and collectibles.</p>
+                            <div class="game-links">
+                                <a href="https://guziczak.github.io/games/icy-tower" class="game-btn play-btn">
+                                    <i class="fas fa-play"></i> Play
+                                </a>
+                                <a href="https://github.com/guziczak/games/blob/main/icy-tower/index.html" class="game-btn code-btn">
+                                    <i class="fas fa-code"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section class="section" id="certificates">
+            <div class="container">
+                <h2 class="section-title animate" id="certificatesTitle">Certificates</h2>
+                <div class="certificates-grid">
+                    <div class="certificate-card animate">
+                        <div class="certificate-header">
+                            <img src="/api/placeholder/400/320" alt="AWS Logo" class="certificate-logo lazy-load" data-src="/api/placeholder/400/320">
+                            <div class="certificate-info">
+                                <h3 class="certificate-name">AWS Certified Developer</h3>
+                                <p class="certificate-issuer">Amazon Web Services</p>
+                            </div>
+                        </div>
+                        <div class="certificate-content">
+                            <p class="certificate-date">
+                                <i class="far fa-calendar-alt"></i> Issued: Jan 2023
+                            </p>
+                            <p class="certificate-description" id="cert1Desc">
+                                Validated expertise in developing and maintaining AWS-based applications, using core AWS services, best practices for application development.
+                            </p>
+                            <a href="certificates.html" class="view-certificate">
+                                <span id="viewCertificate">View Certificate</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="certificate-card animate" style="animation-delay: 0.2s;">
+                        <div class="certificate-header">
+                            <img src="/api/placeholder/400/320" alt="VMware Logo" class="certificate-logo lazy-load" data-src="/api/placeholder/400/320">
+                            <div class="certificate-info">
+                                <h3 class="certificate-name">Certified Spring Professional</h3>
+                                <p class="certificate-issuer">VMware</p>
+                            </div>
+                        </div>
+                        <div class="certificate-content">
+                            <p class="certificate-date">
+                                <i class="far fa-calendar-alt"></i> Issued: May 2022
+                            </p>
+                            <p class="certificate-description" id="cert2Desc">
+                                Demonstrates knowledge of Spring Framework core, Spring MVC, Spring Boot, Spring Data, and Spring Security.
+                            </p>
+                            <a href="certificates.html" class="view-certificate">
+                                <span id="viewCertificate2">View Certificate</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="certificate-card animate" style="animation-delay: 0.3s;">
+                        <div class="certificate-header">
+                            <img src="/api/placeholder/400/320" alt="Scrum.org Logo" class="certificate-logo lazy-load" data-src="/api/placeholder/400/320">
+                            <div class="certificate-info">
+                                <h3 class="certificate-name">Professional Scrum Master</h3>
+                                <p class="certificate-issuer">Scrum.org</p>
+                            </div>
+                        </div>
+                        <div class="certificate-content">
+                            <p class="certificate-date">
+                                <i class="far fa-calendar-alt"></i> Issued: Oct 2021
+                            </p>
+                            <p class="certificate-description" id="cert3Desc">
+                                Certified in understanding of Scrum framework, values, and practices, with ability to apply Scrum in complex environments.
+                            </p>
+                            <a href="certificates.html" class="view-certificate">
+                                <span id="viewCertificate3">View Certificate</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="section" id="achievements">
+            <div class="container">
+                <h2 class="section-title animate" id="achievementsTitle">Achievements</h2>
+                <div class="achievements-list">
+                    <div class="achievement-card animate">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="achievement-title" id="achievement1Title">Implementation of User Preset System</h3>
+                        <p class="achievement-description" id="achievement1Desc">
+                            Developed and implemented a user preset saving functionality for automatic analysis, reducing analysis preparation time by 70% and improving workflow efficiency.
+                        </p>
+                    </div>
+                    <div class="achievement-card animate" style="animation-delay: 0.2s;">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="achievement-title" id="achievement2Title">Exception Management System</h3>
+                        <p class="achievement-description" id="achievement2Desc">
+                            Built a comprehensive exception management system with email notifications, reducing error resolution time by 60% and improving system reliability.
+                        </p>
+                    </div>
+                    <div class="achievement-card animate" style="animation-delay: 0.3s;">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="achievement-title" id="achievement3Title">SQL Query Optimization</h3>
+                        <p class="achievement-description" id="achievement3Desc">
+                            Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution and improved overall application responsiveness.
+                        </p>
+                    </div>
+                    <div class="achievement-card animate" style="animation-delay: 0.4s;">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="achievement-title" id="achievement4Title">ERP System Integration</h3>
+                        <p class="achievement-description" id="achievement4Desc">
+                            Successfully integrated fiscal and label printers in the ERP system, streamlining operations and reducing manual processes by 40%.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section" id="contact">
+            <div class="container">
+                <h2 class="section-title animate" id="contactTitle">Contact Me</h2>
+                <div class="contact-container">
+                    <div class="contact-info animate">
+                        <h3 class="contact-title" id="contactInfoTitle">Get In Touch</h3>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text" id="contactLocation">
+                                Wrocław, Poland
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <a href="mailto:guziczak@pm.me">guziczak@pm.me</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <a href="tel:+48693069832">+48 693 069 832</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-text">
+                                <a href="https://github.com/guziczak" target="_blank">github.com/guziczak</a>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div class="contact-text">
+                                <a href="https://linkedin.com/in/guziczak" target="_blank">linkedin.com/in/guziczak</a>
+                            </div>
+                        </div>
+                        <div class="contact-action animate" style="margin-top: 2rem;">
+                            <button id="openContactModalBtn" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                                <span id="openModalText">Send Me a Message</span>
                             </button>
                         </div>
                     </div>
+                    
+                    <!-- Right side with a card -->
+                    <div class="contact-visual animate" style="animation-delay: 0.2s;">
+                        <div class="contact-card">
+                            <div class="contact-card-header">
+                                <i class="fas fa-comment-dots contact-card-icon"></i>
+                                <h4 class="contact-card-title" id="contactCardTitle">Let's Connect</h4>
+                            </div>
+                            <div class="contact-card-body">
+                                <p class="contact-card-text" id="contactCardText">
+                                    Feel free to reach out for job opportunities, collaborations, or just to say hello. 
+                                    I'm always interested in new projects and challenges!
+                                </p>
+                                <button id="openContactModalBtn2" class="btn btn-primary contact-card-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    <span id="openModalText2">Send Message</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Modal for Contact Form -->
-    <div class="modal" id="contactModal">
+    <div class="modal" id="contactModal" role="dialog" aria-labelledby="modalTitle" aria-modal="true">
         <div class="modal-content draggable">
             <div class="modal-header" id="modalHeader">
-                <h3 class="modal-title">Contact Me</h3>
-                <button class="modal-close" id="closeModalBtn">
+                <h3 class="modal-title" id="modalTitle">Contact Me</h3>
+                <button class="modal-close" id="closeModalBtn" aria-label="Close modal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <form id="contactModalForm">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Your Name" id="modalNameInput" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Your Email" id="modalEmailInput" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Subject" id="modalSubjectInput" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" placeholder="Your Message" id="modalMessageInput" required></textarea>
-                    </div>
-                    <button type="button" id="sendModalMessageBtn" class="btn btn-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        <span id="sendModalMessage">Send Message</span>
-                    </button>
-                </form>
-            </div>
+<div class="form-group">
+    <input type="text" class="form-control" id="modalNameInput" placeholder="Your Name" required>
+    <label for="modalNameInput" class="form-label">Your Name</label>
+    <div class="form-error"></div>
+    <div class="form-feedback"></div>
+</div>
+<div class="form-group">
+    <input type="email" class="form-control" id="modalEmailInput" placeholder="Your Email" required>
+    <label for="modalEmailInput" class="form-label">Your Email</label>
+    <div class="form-error"></div>
+    <div class="form-feedback"></div>
+</div>
+<div class="form-group">
+    <input type="text" class="form-control" id="modalSubjectInput" placeholder="Subject" required>
+    <label for="modalSubjectInput" class="form-label">Subject</label>
+    <div class="form-error"></div>
+    <div class="form-feedback"></div>
+</div>
+<div class="form-group">
+    <textarea class="form-control" id="modalMessageInput" placeholder="Your Message" required></textarea>
+    <label for="modalMessageInput" class="form-label">Your Message</label>
+    <div class="form-error"></div>
+    <div class="form-feedback"></div>
+</div>
+<button type="button" id="sendModalMessageBtn" class="btn btn-primary">
+    <span class="spinner"></span>
+    <i class="fas fa-paper-plane"></i>
+    <span id="sendModalMessage">Send Message</span>
+</button>
+</form>
+<div class="modal-success">
+    <div class="modal-success-icon">
+        <i class="fas fa-check-circle"></i>
+    </div>
+    <h3 class="modal-success-title">Message Sent!</h3>
+    <p class="modal-success-message">Thank you for reaching out. I'll get back to you soon.</p>
+    <button class="btn btn-primary" id="successDoneBtn">Done</button>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Mobile Nav Menu -->
+<div class="mobile-nav-menu" id="mobileNavMenu">
+    <div class="mobile-nav-header">
+        <div class="mobile-nav-title">Menu</div>
+        <button class="mobile-nav-close" id="mobileMenuClose" aria-label="Close menu">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <ul class="mobile-nav-items">
+        <li class="mobile-nav-item">
+            <a href="#home" class="mobile-nav-link">
+                <i class="fas fa-home mobile-nav-icon"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="#about" class="mobile-nav-link">
+                <i class="fas fa-user mobile-nav-icon"></i>
+                <span>About</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="#skills" class="mobile-nav-link">
+                <i class="fas fa-code mobile-nav-icon"></i>
+                <span>Skills</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="#projects" class="mobile-nav-link">
+                <i class="fas fa-project-diagram mobile-nav-icon"></i>
+                <span>Projects</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="#games" class="mobile-nav-link">
+                <i class="fas fa-gamepad mobile-nav-icon"></i>
+                <span>Games</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="#certificates" class="mobile-nav-link">
+                <i class="fas fa-certificate mobile-nav-icon"></i>
+                <span>Certificates</span>
+            </a>
+        </li>
+        <li class="mobile-nav-item">
+            <a href="#contact" class="mobile-nav-link">
+                <i class="fas fa-envelope mobile-nav-icon"></i>
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+    <div class="mobile-nav-footer">
+        <div class="mobile-social-links">
+            <a href="https://github.com/guziczak" class="social-btn" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/guziczak" class="social-btn" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="mailto:guziczak@pm.me" class="social-btn" aria-label="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="tel:+48693069832" class="social-btn" aria-label="Phone">
+                <i class="fas fa-phone-alt"></i>
+            </a>
         </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container footer-content">
-            <div class="footer-text">
-                <div class="footer-logo">Łukasz Guziczak</div>
-                <div class="footer-copyright" id="copyright">
-                    &copy; 2025 All Rights Reserved
-                </div>
-            </div>
-            <div class="footer-links">
-                <a href="#home" class="footer-link">Home</a>
-                <a href="#about" class="footer-link">About</a>
-                <a href="#skills" class="footer-link">Skills</a>
-                <a href="#projects" class="footer-link">Projects</a>
-                <a href="#games" class="footer-link">Games</a>
-                <a href="#contact" class="footer-link">Contact</a>
-                <a href="cv.html" class="footer-link" id="footerCV">CV</a>
+<!-- Footer -->
+<footer class="footer" role="contentinfo">
+    <div class="container footer-content">
+        <div class="footer-text">
+            <div class="footer-logo">Łukasz Guziczak</div>
+            <div class="footer-copyright" id="copyright">
+                &copy; 2025 All Rights Reserved
             </div>
         </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <div class="back-to-top" id="backToTopBtn">
-        <i class="fas fa-arrow-up"></i>
+        <div class="footer-links">
+            <a href="#home" class="footer-link">Home</a>
+            <a href="#about" class="footer-link">About</a>
+            <a href="#skills" class="footer-link">Skills</a>
+            <a href="#projects" class="footer-link">Projects</a>
+            <a href="#games" class="footer-link">Games</a>
+            <a href="#contact" class="footer-link">Contact</a>
+            <a href="cv.html" class="footer-link" id="footerCV">CV</a>
+        </div>
     </div>
+</footer>
 
-    <!-- Scripts -->
-    <script>
-        // DOM Elements
-        const navbar = document.getElementById('navbar');
-        const navLinks = document.getElementById('navLinks');
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const menuIcon = document.getElementById('menuIcon');
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const backToTopBtn = document.getElementById('backToTopBtn');
-        const animatedElements = document.querySelectorAll('.animate');
-        const currentLangFlag = document.getElementById('currentLangFlag');
+<!-- Back to Top Button -->
+<div class="back-to-top" id="backToTopBtn" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</div>
 
-        // Modal Elements
-        const contactModal = document.getElementById('contactModal');
-        const openContactModalBtn = document.getElementById('openContactModalBtn');
-        const openContactModalBtn2 = document.getElementById('openContactModalBtn2');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalContent = document.querySelector('.modal-content.draggable');
-        const modalHeader = document.getElementById('modalHeader');
-        const sendModalMessageBtn = document.getElementById('sendModalMessageBtn');
+<!-- Scripts -->
+<script>
+    // DOM Elements
+    const navbar = document.getElementById('navbar');
+    const navLinks = document.getElementById('navLinks');
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const menuIcon = document.getElementById('menuIcon');
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = document.getElementById('themeIcon');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    const animatedElements = document.querySelectorAll('.animate');
+    const currentLangFlag = document.getElementById('currentLangFlag');
+
+    // Modal Elements
+    const contactModal = document.getElementById('contactModal');
+    const openContactModalBtn = document.getElementById('openContactModalBtn');
+    const openContactModalBtn2 = document.getElementById('openContactModalBtn2');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalContent = document.querySelector('.modal-content.draggable');
+    const modalHeader = document.getElementById('modalHeader');
+    const sendModalMessageBtn = document.getElementById('sendModalMessageBtn');
+    
+    // Form elements
+    const modalNameInput = document.getElementById('modalNameInput');
+    const modalEmailInput = document.getElementById('modalEmailInput');
+    const modalSubjectInput = document.getElementById('modalSubjectInput');
+    const modalMessageInput = document.getElementById('modalMessageInput');
+    const form = document.getElementById('contactModalForm');
+    const successMessage = document.querySelector('.modal-success');
+    const successDoneBtn = document.getElementById('successDoneBtn');
+
+    // Initialize enhancements
+    function initEnhancements() {
+        enhanceSkillCards();
+        enhanceProjectCards();
+        addHeroParticles();
+        enhanceContactForm();
+        enhanceMobileNavigation();
+        implementLazyLoading();
+        enhanceScrollAnimations();
+        enhanceAccessibility();
+    }
+
+    // Theme Toggle
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
         
-        // Form elements
-        const modalNameInput = document.getElementById('modalNameInput');
-        const modalEmailInput = document.getElementById('modalEmailInput');
-        const modalSubjectInput = document.getElementById('modalSubjectInput');
-        const modalMessageInput = document.getElementById('modalMessageInput');
-
-        // Theme Toggle
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            
-            localStorage.setItem('darkMode', isDarkMode);
-            
-            if (isDarkMode) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
-        }
-
-        // Initialize Theme
-        const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-        if (savedDarkMode) {
-            document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+        
+        if (isDarkMode) {
             themeIcon.classList.remove('fa-moon');
             themeIcon.classList.add('fa-sun');
-        }
-
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            navLinks.classList.toggle('active');
-            
-            if (navLinks.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-        }
-
-        // Scroll Event Listener
-        window.addEventListener('scroll', function() {
-            // Navbar Scroll Effect
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            // Back to Top Button
-            if (window.scrollY > 500) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-            
-            // Animate elements on scroll
-            animatedElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementPosition < windowHeight - 100) {
-                    element.classList.add('active');
-                }
-            });
-        });
-
-        // Smooth Scrolling for Navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                if (navLinks.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
-                
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active Navigation Link on Scroll
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navItems = document.querySelectorAll('.nav-item a');
-            
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                const sectionHeight = section.clientHeight;
-                
-                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                if (item.getAttribute('href') === `#${current}`) {
-                    item.classList.add('active');
-                }
-            });
-        });
-
-        // Back to Top Button
-        backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Event Listeners
-        themeToggle.addEventListener('click', toggleDarkMode);
-        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-
-        // Language Switcher
-        function changeLanguage(lang) {
-            localStorage.setItem('selectedLanguage', lang);
-            applyLanguage(lang);
-        }
-
-        // Function to apply language
-        function applyLanguage(lang) {
-            const elements = {
-                'en': {
-                    'heroTitle': 'Full-stack Developer & Analyst',
-                    'heroSubtitle': 'Turning Ideas into Digital Reality',
-                    'heroDescription': 'Passionate about creating efficient, scalable solutions with modern technologies. I specialize in Java, Python, React, and cloud infrastructure development.',
-                    'ctaContact': 'Contact Me',
-                    'ctaProjects': 'View Projects',
-                    'aboutTitle': 'About Me',
-                    'aboutDescription': 'I\'m a Full-stack Developer and Analyst with a passion for building efficient and scalable applications. With extensive experience in both front-end and back-end technologies, I enjoy solving complex problems and optimizing systems. I\'m always eager to learn new technologies and methodologies to improve my skills and deliver better results.',
-                    'aboutExperience': 'Throughout my career, I\'ve worked on various projects ranging from enterprise-level applications to small interactive tools. I believe in clean code, robust architecture, and user-centered design principles.',
-                    'yearsExperience': '5+',
-                    'yearsExperienceLabel': 'Years Experience',
-                    'projectsCompleted': '50+',
-                    'projectsCompletedLabel': 'Projects Completed',
-                    'happyClients': '30+',
-                    'happyClientsLabel': 'Happy Clients',
-                    'skillsTitle': 'My Skills',
-                    'programmingTitle': 'Programming Languages',
-                    'frameworksTitle': 'Frameworks & Libraries',
-                    'cloudTitle': 'Cloud & DevOps',
-                    'databaseTitle': 'Databases',
-                    'architectureTitle': 'Architecture & Methodologies',
-                    'aiTitle': 'AI & Tools',
-                    'projectsTitle': 'Recent Projects',
-                    'project1Desc': 'Developed a system for automatic data analysis with user preset capabilities, improving analysis efficiency by 40%.',
-                    'project2Desc': 'Built a comprehensive exception tracking system with email notifications, reducing error resolution time by 60%.',
-                    'project3Desc': 'Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution.',
-                    'viewProject': 'View Project',
-                    'viewCode': 'View Code',
-                    'viewProject2': 'View Project',
-                    'viewCode2': 'View Code',
-                    'viewProject3': 'View Project',
-                    'viewCode3': 'View Code',
-                    'gamesTitle': 'My Games',
-                    'gamesDescription': 'Check out the games I\'ve developed using JavaScript and HTML5 Canvas. Feel free to play them online or explore the source code on GitHub.',
-                    'certificatesTitle': 'Certificates',
-                    'cert1Desc': 'Validated expertise in developing and maintaining AWS-based applications, using core AWS services, best practices for application development.',
-                    'cert2Desc': 'Demonstrates knowledge of Spring Framework core, Spring MVC, Spring Boot, Spring Data, and Spring Security.',
-                    'cert3Desc': 'Certified in understanding of Scrum framework, values, and practices, with ability to apply Scrum in complex environments.',
-                    'viewCertificate': 'View Certificate',
-                    'viewCertificate2': 'View Certificate',
-                    'viewCertificate3': 'View Certificate',
-                    'achievementsTitle': 'Achievements',
-                    'achievement1Title': 'Implementation of User Preset System',
-                    'achievement1Desc': 'Developed and implemented a user preset saving functionality for automatic analysis, reducing analysis preparation time by 70% and improving workflow efficiency.',
-                    'achievement2Title': 'Exception Management System',
-                    'achievement2Desc': 'Built a comprehensive exception management system with email notifications, reducing error resolution time by 60% and improving system reliability.',
-                    'achievement3Title': 'SQL Query Optimization',
-                    'achievement3Desc': 'Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution and improved overall application responsiveness.',
-                    'achievement4Title': 'ERP System Integration',
-                    'achievement4Desc': 'Successfully integrated fiscal and label printers in the ERP system, streamlining operations and reducing manual processes by 40%.',
-                    'contactTitle': 'Contact Me',
-                    'contactInfoTitle': 'Get In Touch',
-                    'contactLocation': 'Wrocław, Poland',
-                    'sendMessage': 'Send Message',
-                    'copyright': '&copy; 2025 All Rights Reserved',
-                    'footerCV': 'CV',
-                    'modalTitle': 'Contact Me',
-                    'openModalText': 'Send Me a Message',
-                    'openModalText2': 'Send Message',
-                    'sendModalMessage': 'Send Message',
-                    'contactCardTitle': 'Let\'s Connect',
-                    'contactCardText': 'Feel free to reach out for job opportunities, collaborations, or just to say hello. I\'m always interested in new projects and challenges!'
-                },
-                'pl': {
-                    'heroTitle': 'Programista Full-stack & Analityk',
-                    'heroSubtitle': 'Przekształcam Pomysły w Cyfrową Rzeczywistość',
-                    'heroDescription': 'Z pasją tworzę wydajne, skalowalne rozwiązania wykorzystując nowoczesne technologie. Specjalizuję się w Java, Python, React oraz infrastrukturze chmurowej.',
-                    'ctaContact': 'Kontakt',
-                    'ctaProjects': 'Zobacz Projekty',
-                    'aboutTitle': 'O Mnie',
-                    'aboutDescription': 'Jestem programistą Full-stack i analitykiem z pasją do tworzenia wydajnych i skalowalnych aplikacji. Dzięki bogatemu doświadczeniu zarówno w technologiach front-end jak i back-end, lubię rozwiązywać złożone problemy i optymalizować systemy. Zawsze chętnie poznaję nowe technologie i metodologie, aby doskonalić swoje umiejętności i dostarczać lepsze rezultaty.',
-                    'aboutExperience': 'W trakcie mojej kariery pracowałem przy różnorodnych projektach, od aplikacji na poziomie enterprise po małe narzędzia interaktywne. Wierzę w czysty kod, solidną architekturę i zasady projektowania skoncentrowane na użytkowniku.',
-                    'yearsExperience': '5+',
-                    'yearsExperienceLabel': 'Lat Doświadczenia',
-                    'projectsCompleted': '50+',
-                    'projectsCompletedLabel': 'Ukończonych Projektów',
-                    'happyClients': '30+',
-                    'happyClientsLabel': 'Zadowolonych Klientów',
-                    'skillsTitle': 'Moje Umiejętności',
-                    'programmingTitle': 'Języki Programowania',
-                    'frameworksTitle': 'Frameworki i Biblioteki',
-                    'cloudTitle': 'Chmura i DevOps',
-                    'databaseTitle': 'Bazy Danych',
-                    'architectureTitle': 'Architektura i Metodologie',
-                    'aiTitle': 'AI i Narzędzia',
-                    'projectsTitle': 'Ostatnie Projekty',
-                    'project1Desc': 'Stworzyłem system do automatycznej analizy danych z możliwością zapisywania presetów użytkownika, poprawiając wydajność analizy o 40%.',
-                    'project2Desc': 'Zbudowałem kompleksowy system zarządzania wyjątkami z powiadomieniami e-mail, skracając czas rozwiązywania błędów o 60%.',
-                    'project3Desc': 'Zoptymalizowałem złożone zapytania SQL dla zwiększenia wydajności bazy danych, co skutkowało 70% szybszym wykonaniem zapytań.',
-                    'viewProject': 'Zobacz Projekt',
-                    'viewCode': 'Zobacz Kod',
-                    'viewProject2': 'Zobacz Projekt',
-                    'viewCode2': 'Zobacz Kod',
-                    'viewProject3': 'Zobacz Projekt',
-                    'viewCode3': 'Zobacz Kod',
-                    'gamesTitle': 'Moje Gry',
-                    'gamesDescription': 'Sprawdź gry, które stworzyłem przy użyciu JavaScript i HTML5 Canvas. Możesz w nie zagrać online lub zapoznać się z kodem źródłowym na GitHubie.',
-                    'certificatesTitle': 'Certyfikaty',
-                    'cert1Desc': 'Potwierdzona wiedza w zakresie tworzenia i utrzymywania aplikacji opartych na AWS, wykorzystujących podstawowe usługi AWS i najlepsze praktyki programistyczne.',
-                    'cert2Desc': 'Potwierdza znajomość Spring Framework core, Spring MVC, Spring Boot, Spring Data oraz Spring Security.',
-                    'cert3Desc': 'Certyfikowany w zakresie zrozumienia ram Scrum, wartości i praktyk, z umiejętnością stosowania Scrum w złożonych środowiskach.',
-                    'viewCertificate': 'Zobacz Certyfikat',
-                    'viewCertificate2': 'Zobacz Certyfikat',
-                    'viewCertificate3': 'Zobacz Certyfikat',
-                    'achievementsTitle': 'Osiągnięcia',
-                    'achievement1Title': 'Wdrożenie Systemu Presetów Użytkownika',
-                    'achievement1Desc': 'Opracowałem i zaimplementowałem funkcjonalność zapisywania presetów użytkownika do automatycznej analizy, skracając czas przygotowania analizy o 70% i poprawiając wydajność workflow.',
-                    'achievement2Title': 'System Zarządzania Wyjątkami',
-                    'achievement2Desc': 'Zbudowałem kompleksowy system zarządzania wyjątkami z powiadomieniami e-mail, zmniejszając czas rozwiązywania błędów o 60% i poprawiając niezawodność systemu.',
-                    'achievement3Title': 'Optymalizacja Zapytań SQL',
-                    'achievement3Desc': 'Zoptymalizowałem złożone zapytania SQL dla zwiększenia wydajności bazy danych, co skutkowało 70% szybszym wykonaniem zapytań i poprawą ogólnej responsywności aplikacji.',
-                    'achievement4Title': 'Integracja Systemu ERP',
-                    'achievement4Desc': 'Pomyślnie zintegrowałem drukarki fiskalne i etykietowe w systemie ERP, usprawniając operacje i zmniejszając procesy manualne o 40%.',
-                    'contactTitle': 'Kontakt',
-                    'contactInfoTitle': 'Skontaktuj się',
-                    'contactLocation': 'Wrocław, Polska',
-'sendMessage': 'Wyślij Wiadomość',
-'copyright': '&copy; 2025 Wszelkie Prawa Zastrzeżone',
-'footerCV': 'CV',
-'modalTitle': 'Kontakt',
-'openModalText': 'Wyślij Wiadomość',
-'openModalText2': 'Wyślij Wiadomość',
-'sendModalMessage': 'Wyślij Wiadomość',
-'contactCardTitle': 'Nawiążmy Kontakt',
-'contactCardText': 'Skontaktuj się ze mną w sprawie ofert pracy, współpracy lub po prostu, aby się przywitać. Zawsze interesują mnie nowe projekty i wyzwania!'
-}
-};
-
-// Update content
-Object.keys(elements[lang]).forEach(id => {
-    const element = document.getElementById(id);
-    if (element) {
-        if (id.includes('Desc') || id === 'aboutDescription' || id === 'aboutExperience' || id === 'gamesDescription' || id === 'heroDescription' || id === 'contactCardText') {
-            element.innerText = elements[lang][id];
         } else {
-            element.innerHTML = elements[lang][id];
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
         }
     }
-});
 
-// Update language flag
-currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
-}
+    // Initialize Theme
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (savedDarkMode) {
+        document.body.classList.add('dark-mode');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    }
 
-// Check if language preference is saved
-const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
-applyLanguage(savedLanguage);
+    // Mobile Menu Toggle
+    function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileNavMenu');
+        mobileMenu.classList.toggle('active');
+        
+        if (mobileMenu.classList.contains('active')) {
+            menuIcon.classList.remove('fa-bars');
+            menuIcon.classList.add('fa-times');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        } else {
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    }
 
-// Initialize animations
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(function() {
-        document.querySelectorAll('.animate').forEach((element, index) => {
-            setTimeout(() => {
-                element.classList.add('active');
-            }, index * 100);
+    // Add Hero Particles
+    function addHeroParticles() {
+        const hero = document.querySelector('.hero');
+        const particleContainer = document.createElement('div');
+        particleContainer.className = 'hero-particles';
+        
+        // Create particles
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            
+            // Random position
+            const top = Math.random() * 100;
+            const left = Math.random() * 100;
+            
+            // Random size (5-15px)
+            const size = Math.random() * 10 + 5;
+            
+            // Random opacity (0.1-0.3)
+            const opacity = Math.random() * 0.2 + 0.1;
+            
+            // Random animation delay
+            const delay = Math.random() * 5;
+            
+            // Apply styles
+            particle.style.top = `${top}%`;
+            particle.style.left = `${left}%`;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.opacity = opacity;
+            particle.style.animationDelay = `${delay}s`;
+            
+            particleContainer.appendChild(particle);
+        }
+        
+        hero.insertBefore(particleContainer, hero.firstChild);
+    }
+
+    // Enhanced skill cards
+    function enhanceSkillCards() {
+        // Array of skills with their levels (out of 100)
+        const skillLevels = {
+            'Java': 95,
+            'Python': 90,
+            'JavaScript / TypeScript': 92,
+            'SQL': 88,
+            'HTML/CSS': 95,
+            'Spring Framework': 90,
+            'React.js': 88,
+            'Node.js': 85,
+            'Django': 80,
+            'Express.js': 87,
+            'AWS': 82,
+            'Azure': 78,
+            'Docker': 85,
+            'Kubernetes': 80,
+            'CI/CD (Jenkins, GitHub Actions)': 85,
+            'PostgreSQL': 90,
+            'MongoDB': 85,
+            'MySQL/MariaDB': 92,
+            'Redis': 80,
+            'Elasticsearch': 75,
+            'Microservices': 88,
+            'REST APIs': 95,
+            'GraphQL': 80,
+            'Agile/Scrum': 90,
+            'Test-Driven Development': 85,
+            'ChatGPT': 90,
+            'DeepSeek': 85,
+            'Copilot': 88,
+            'Data Analysis': 82,
+            'Machine Learning Basics': 75
+        };
+
+        // Get all skill items
+        const skillItems = document.querySelectorAll('.skill-item');
+        
+        skillItems.forEach(item => {
+            const skillName = item.textContent.trim();
+            if (skillLevels[skillName]) {
+                const level = skillLevels[skillName];
+                
+                // Create skill level elements
+                const skillLevel = document.createElement('div');
+                skillLevel.className = 'skill-level';
+                
+                const progressContainer = document.createElement('div');
+                progressContainer.className = 'skill-progress-container';
+                
+                const progressBar = document.createElement('div');
+                progressBar.className = 'skill-progress-bar';
+                progressBar.style.width = '0%'; // Start at 0 for animation
+                
+                const levelText = document.createElement('div');
+                levelText.className = 'skill-level-text';
+                levelText.textContent = `${level}%`;
+                
+                // Append elements
+                progressContainer.appendChild(progressBar);
+                skillLevel.appendChild(progressContainer);
+                skillLevel.appendChild(levelText);
+                item.appendChild(skillLevel);
+                
+                // Set up animation on scroll
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => {
+                                progressBar.style.width = `${level}%`;
+                            }, 200);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                
+                observer.observe(progressContainer);
+            }
         });
-    }, 300);
-});
+    }
 
-// Modal functionality
-// Open modal
-openContactModalBtn.addEventListener('click', () => {
-    contactModal.classList.add('active');
-    
-    // Center the modal
-    modalContent.style.top = '50%';
-    modalContent.style.left = '50%';
-    modalContent.style.transform = 'translate(-50%, -50%)';
-});
+    // Enhanced Project Cards
+    function enhanceProjectCards() {
+        // Project technologies are already added in the HTML
+        
+        // Add image overlays if not already present
+        document.querySelectorAll('.project-card').forEach(card => {
+            if (!card.querySelector('.project-img-overlay')) {
+                const image = card.querySelector('.project-img');
+                const overlay = document.createElement('div');
+                overlay.className = 'project-img-overlay';
+                if (image && image.parentNode) {
+                    image.parentNode.insertBefore(overlay, image.nextSibling);
+                }
+            }
+        });
+    }
 
-// Second button for opening modal
-if (openContactModalBtn2) {
+    // Enhanced Contact Form
+    function enhanceContactForm() {
+        // Form validation
+        function validateInput(input, errorMsg) {
+            const formGroup = input.closest('.form-group');
+            const feedbackElement = formGroup.querySelector('.form-feedback');
+            
+            if (!input.value.trim()) {
+                formGroup.classList.add('error');
+                formGroup.classList.remove('success');
+                feedbackElement.className = 'form-feedback error';
+                feedbackElement.innerHTML = '<i class="fas fa-exclamation-circle form-feedback-icon"></i> ' + errorMsg;
+                return false;
+            } else {
+                formGroup.classList.remove('error');
+                formGroup.classList.add('success');
+                feedbackElement.className = 'form-feedback success';
+                feedbackElement.innerHTML = '<i class="fas fa-check-circle form-feedback-icon"></i> Looks good!';
+                return true;
+            }
+        }
+        
+        function validateEmail(input) {
+            const formGroup = input.closest('.form-group');
+            const feedbackElement = formGroup.querySelector('.form-feedback');
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            if (!input.value.trim() || !emailPattern.test(input.value)) {
+                formGroup.classList.add('error');
+                formGroup.classList.remove('success');
+                feedbackElement.className = 'form-feedback error';
+                feedbackElement.innerHTML = '<i class="fas fa-exclamation-circle form-feedback-icon"></i> Please enter a valid email address';
+                return false;
+            } else {
+                formGroup.classList.remove('error');
+                formGroup.classList.add('success');
+                feedbackElement.className = 'form-feedback success';
+                feedbackElement.innerHTML = '<i class="fas fa-check-circle form-feedback-icon"></i> Looks good!';
+                return true;
+            }
+        }
+        
+        // Event listeners for real-time validation
+        modalNameInput.addEventListener('blur', () => validateInput(modalNameInput, 'Please enter your name'));
+        modalEmailInput.addEventListener('blur', () => validateEmail(modalEmailInput));
+        modalSubjectInput.addEventListener('blur', () => validateInput(modalSubjectInput, 'Please enter a subject'));
+        modalMessageInput.addEventListener('blur', () => validateInput(modalMessageInput, 'Please enter your message'));
+        
+        // Form submission
+        sendModalMessageBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            // Validate all inputs
+            const isNameValid = validateInput(modalNameInput, 'Please enter your name');
+            const isEmailValid = validateEmail(modalEmailInput);
+            const isSubjectValid = validateInput(modalSubjectInput, 'Please enter a subject');
+            const isMessageValid = validateInput(modalMessageInput, 'Please enter your message');
+            
+            if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
+                // Show loading state
+                sendModalMessageBtn.disabled = true;
+                sendModalMessageBtn.classList.add('loading');
+                
+                // Simulate sending process
+                setTimeout(() => {
+                    // Format the message with sender info
+                    const formattedMessage = `Message from: ${modalNameInput.value.trim()} (${modalEmailInput.value.trim()})\n\n${modalMessageInput.value.trim()}`;
+                    
+                    // Create mailto link with subject and body
+                    const mailtoLink = `mailto:guziczak@pm.me?subject=${encodeURIComponent(modalSubjectInput.value.trim())}&body=${encodeURIComponent(formattedMessage)}`;
+                    
+                    // Reset loading state
+                    sendModalMessageBtn.disabled = false;
+                    sendModalMessageBtn.classList.remove('loading');
+                    
+                    // Open mail client
+                    window.location.href = mailtoLink;
+                    
+                    // Show success message
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                }, 1500);
+            }
+        });
+        
+        // Success done button
+        successDoneBtn.addEventListener('click', () => {
+            contactModal.classList.remove('active');
+            
+            // Reset form after a delay
+            setTimeout(() => {
+                form.style.display = 'block';
+                successMessage.style.display = 'none';
+                form.reset();
+                
+                // Reset validation states
+                document.querySelectorAll('.form-group').forEach(group => {
+                    group.classList.remove('success', 'error');
+                    const feedback = group.querySelector('.form-feedback');
+                    if (feedback) {
+                        feedback.innerHTML = '';
+                        feedback.className = 'form-feedback';
+                    }
+                });
+            }, 500);
+        });
+    }
+
+    // Enhanced Mobile Navigation
+    function enhanceMobileNavigation() {
+        const mobileMenu = document.getElementById('mobileNavMenu');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        
+        // Close menu when clicking on close button
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        });
+        
+        // Close menu when clicking on links
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+    }
+
+    // Implement Lazy Loading
+    function implementLazyLoading() {
+        // Intersection Observer for lazy loading images
+        const lazyLoadObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    const src = img.getAttribute('data-src');
+                    
+                    if (src) {
+                        img.src = src;
+                        img.addEventListener('load', () => {
+                            img.classList.add('loaded');
+                        });
+                    }
+                    
+                    lazyLoadObserver.unobserve(img);
+                }
+            });
+        }, { rootMargin: '200px' });
+        
+        // Start observing all lazy load images
+        document.querySelectorAll('.lazy-load').forEach(img => {
+            lazyLoadObserver.observe(img);
+        });
+    }
+
+    // Enhanced Scroll Animations
+    function enhanceScrollAnimations() {
+        // Use Intersection Observer for scroll animations
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    animationObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Observe all animated elements
+        animatedElements.forEach(element => {
+            animationObserver.observe(element);
+        });
+    }
+
+    // Enhanced Accessibility
+    function enhanceAccessibility() {
+        // Ensure focus trap in modal
+        contactModal.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                contactModal.classList.remove('active');
+            }
+            
+            if (e.key === 'Tab') {
+                const focusableElements = modalContent.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+                const firstElement = focusableElements[0];
+                const lastElement = focusableElements[focusableElements.length - 1];
+                
+                if (e.shiftKey && document.activeElement === firstElement) {
+                    e.preventDefault();
+                    lastElement.focus();
+                } else if (!e.shiftKey && document.activeElement === lastElement) {
+                    e.preventDefault();
+                    firstElement.focus();
+                }
+            }
+        });
+        
+        // Focus first input when modal opens
+        function setModalFocus() {
+            setTimeout(() => {
+                modalNameInput.focus();
+            }, 100);
+        }
+        
+        openContactModalBtn.addEventListener('click', setModalFocus);
+        openContactModalBtn2.addEventListener('click', setModalFocus);
+    }
+
+    // Scroll Event Listener
+    window.addEventListener('scroll', function() {
+        // Navbar Scroll Effect
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // Back to Top Button
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Smooth Scrolling for Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Active Navigation Link on Scroll
+    window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item a');
+        
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            if (item.getAttribute('href') === `#${current}`) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    // Back to Top Button
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Event Listeners
+    themeToggle.addEventListener('click', toggleDarkMode);
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    // Modal functionality
+    // Open modal
+    openContactModalBtn.addEventListener('click', () => {
+        contactModal.classList.add('active');
+        
+        // Center the modal
+        modalContent.style.top = '50%';
+        modalContent.style.left = '50%';
+        modalContent.style.transform = 'translate(-50%, -50%)';
+    });
+
+    // Second button for opening modal
     openContactModalBtn2.addEventListener('click', () => {
         contactModal.classList.add('active');
         
@@ -2402,124 +3213,252 @@ if (openContactModalBtn2) {
         modalContent.style.left = '50%';
         modalContent.style.transform = 'translate(-50%, -50%)';
     });
-}
 
-// Close modal
-closeModalBtn.addEventListener('click', () => {
-    contactModal.classList.remove('active');
-});
-
-// Close modal when clicking outside
-contactModal.addEventListener('click', (e) => {
-    if (e.target === contactModal) {
+    // Close modal
+    closeModalBtn.addEventListener('click', () => {
         contactModal.classList.remove('active');
-    }
-});
+    });
 
-// Variables to track dragging
-let isDragging = false;
-let offsetX, offsetY;
-let startX, startY;
-
-// Viewport boundaries with padding
-const VIEWPORT_PADDING = 20;
-
-// Improved mousedown event for dragging
-modalHeader.addEventListener('mousedown', (e) => {
-    // Only start dragging on left mouse button
-    if (e.button !== 0) return;
-    
-    // Prevent default to avoid any text selection
-    e.preventDefault();
-    
-    isDragging = true;
-    
-    // Calculate the offset from the mouse position to the modal content position
-    const rect = modalContent.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-    
-    // Store initial position
-    startX = e.clientX;
-    startY = e.clientY;
-    
-    // Change cursor while dragging
-    modalHeader.style.cursor = 'grabbing';
-});
-
-// Improved mousemove for smoother dragging
-document.addEventListener('mousemove', (e) => {
-    if (!isDragging) return;
-    
-    // Calculate new position
-    let x = e.clientX - offsetX;
-    let y = e.clientY - offsetY;
-    
-    // Get modal dimensions
-    const rect = modalContent.getBoundingClientRect();
-    const modalWidth = rect.width;
-    const modalHeight = rect.height;
-    
-    // Constrain to viewport boundaries
-    x = Math.max(VIEWPORT_PADDING, Math.min(x, window.innerWidth - modalWidth - VIEWPORT_PADDING));
-    y = Math.max(VIEWPORT_PADDING, Math.min(y, window.innerHeight - modalHeight - VIEWPORT_PADDING));
-    
-    // Move the modal
-    modalContent.style.left = x + 'px';
-    modalContent.style.top = y + 'px';
-    modalContent.style.transform = 'none';
-});
-
-// Improved mouseup for dragging
-document.addEventListener('mouseup', (e) => {
-    if (isDragging) {
-        // Calculate how far the modal was moved
-        const deltaX = Math.abs(e.clientX - startX);
-        const deltaY = Math.abs(e.clientY - startY);
-        
-        // Only consider it a click if moved less than a threshold
-        const isClick = deltaX < 5 && deltaY < 5;
-        
-        isDragging = false;
-        modalHeader.style.cursor = 'move';
-        
-        // If it was a small movement, treat it as a click rather than a drag
-        if (isClick && e.target.closest('.modal-close')) {
+    // Close modal when clicking outside
+    contactModal.addEventListener('click', (e) => {
+        if (e.target === contactModal) {
             contactModal.classList.remove('active');
         }
-    }
-});
+    });
 
-// Prevent accidental closing when clicking inside the modal
-modalContent.addEventListener('click', (e) => {
-    e.stopPropagation();
-});
+    // Variables to track dragging
+    let isDragging = false;
+    let offsetX, offsetY;
+    let startX, startY;
+    
+    // Viewport boundaries with padding
+    const VIEWPORT_PADDING = 20;
 
-// Send message functionality
-sendModalMessageBtn.addEventListener('click', () => {
-    const name = modalNameInput.value.trim();
-    const email = modalEmailInput.value.trim();
-    const subject = modalSubjectInput.value.trim();
-    const message = modalMessageInput.value.trim();
-    
-    // Validate form
-    if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields');
-        return;
+    // Improved mousedown event for dragging
+    modalHeader.addEventListener('mousedown', (e) => {
+        // Only start dragging on left mouse button
+        if (e.button !== 0) return;
+        
+        // Prevent default to avoid any text selection
+        e.preventDefault();
+        
+        isDragging = true;
+        
+        // Calculate the offset from the mouse position to the modal content position
+        const rect = modalContent.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        
+        // Store initial position
+        startX = e.clientX;
+        startY = e.clientY;
+        
+        // Change cursor while dragging
+        modalHeader.style.cursor = 'grabbing';
+    });
+
+    // Improved mousemove for smoother dragging
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        
+        // Calculate new position
+        let x = e.clientX - offsetX;
+        let y = e.clientY - offsetY;
+        
+        // Get modal dimensions
+        const rect = modalContent.getBoundingClientRect();
+        const modalWidth = rect.width;
+        const modalHeight = rect.height;
+        
+        // Constrain to viewport boundaries
+        x = Math.max(VIEWPORT_PADDING, Math.min(x, window.innerWidth - modalWidth - VIEWPORT_PADDING));
+        y = Math.max(VIEWPORT_PADDING, Math.min(y, window.innerHeight - modalHeight - VIEWPORT_PADDING));
+        
+        // Move the modal
+        modalContent.style.left = x + 'px';
+        modalContent.style.top = y + 'px';
+        modalContent.style.transform = 'none';
+    });
+
+    // Improved mouseup for dragging
+    document.addEventListener('mouseup', (e) => {
+        if (isDragging) {
+            // Calculate how far the modal was moved
+            const deltaX = Math.abs(e.clientX - startX);
+            const deltaY = Math.abs(e.clientY - startY);
+            
+            // Only consider it a click if moved less than a threshold
+            const isClick = deltaX < 5 && deltaY < 5;
+            
+            isDragging = false;
+            modalHeader.style.cursor = 'move';
+        }
+    });
+
+    // Prevent accidental closing when clicking inside the modal
+    modalContent.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Language Switcher
+    function changeLanguage(lang) {
+        localStorage.setItem('selectedLanguage', lang);
+        applyLanguage(lang);
     }
-    
-    // Format the message with sender info
-    const formattedMessage = `Message from: ${name} (${email})\n\n${message}`;
-    
-    // Create mailto link with subject and body
-    const mailtoLink = `mailto:guziczak@pm.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(formattedMessage)}`;
-    
-    // Open the mail client
-    window.location.href = mailtoLink;
-    
-    // Optional: close the modal after sending
-    contactModal.classList.remove('active');
-});
+
+    // Function to apply language
+    function applyLanguage(lang) {
+        const elements = {
+            'en': {
+                'heroTitle': 'Full-stack Developer & Analyst',
+                'heroSubtitle': 'Turning Ideas into Digital Reality',
+                'heroDescription': 'Passionate about creating efficient, scalable solutions with modern technologies. I specialize in Java, Python, React, and cloud infrastructure development.',
+                'ctaContact': 'Contact Me',
+                'ctaProjects': 'View Projects',
+                'aboutTitle': 'About Me',
+                'aboutDescription': 'I\'m a Full-stack Developer and Analyst with a passion for building efficient and scalable applications. With extensive experience in both front-end and back-end technologies, I enjoy solving complex problems and optimizing systems. I\'m always eager to learn new technologies and methodologies to improve my skills and deliver better results.',
+                'aboutExperience': 'Throughout my career, I\'ve worked on various projects ranging from enterprise-level applications to small interactive tools. I believe in clean code, robust architecture, and user-centered design principles.',
+                'yearsExperience': '5+',
+                'yearsExperienceLabel': 'Years Experience',
+                'projectsCompleted': '50+',
+                'projectsCompletedLabel': 'Projects Completed',
+                'happyClients': '30+',
+                'happyClientsLabel': 'Happy Clients',
+                'skillsTitle': 'My Skills',
+                'programmingTitle': 'Programming Languages',
+                'frameworksTitle': 'Frameworks & Libraries',
+                'cloudTitle': 'Cloud & DevOps',
+                'databaseTitle': 'Databases',
+                'architectureTitle': 'Architecture & Methodologies',
+                'aiTitle': 'AI & Tools',
+                'projectsTitle': 'Recent Projects',
+                'project1Desc': 'Developed a system for automatic data analysis with user preset capabilities, improving analysis efficiency by 40%.',
+                'project2Desc': 'Built a comprehensive exception tracking system with email notifications, reducing error resolution time by 60%.',
+                'project3Desc': 'Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution.',
+                'viewProject': 'View Project',
+                'viewCode': 'View Code',
+                'viewProject2': 'View Project',
+                'viewCode2': 'View Code',
+                'viewProject3': 'View Project',
+                'viewCode3': 'View Code',
+                'gamesTitle': 'My Games',
+                'gamesDescription': 'Check out the games I\'ve developed using JavaScript and HTML5 Canvas. Feel free to play them online or explore the source code on GitHub.',
+                'certificatesTitle': 'Certificates',
+                'cert1Desc': 'Validated expertise in developing and maintaining AWS-based applications, using core AWS services, best practices for application development.',
+                'cert2Desc': 'Demonstrates knowledge of Spring Framework core, Spring MVC, Spring Boot, Spring Data, and Spring Security.',
+                'cert3Desc': 'Certified in understanding of Scrum framework, values, and practices, with ability to apply Scrum in complex environments.',
+                'viewCertificate': 'View Certificate',
+                'viewCertificate2': 'View Certificate',
+                'viewCertificate3': 'View Certificate',
+                'achievementsTitle': 'Achievements',
+                'achievement1Title': 'Implementation of User Preset System',
+                'achievement1Desc': 'Developed and implemented a user preset saving functionality for automatic analysis, reducing analysis preparation time by 70% and improving workflow efficiency.',
+                'achievement2Title': 'Exception Management System',
+                'achievement2Desc': 'Built a comprehensive exception management system with email notifications, reducing error resolution time by 60% and improving system reliability.',
+                'achievement3Title': 'SQL Query Optimization',
+                'achievement3Desc': 'Optimized complex SQL queries for enhanced database performance, resulting in 70% faster query execution and improved overall application responsiveness.',
+                'achievement4Title': 'ERP System Integration',
+                'achievement4Desc': 'Successfully integrated fiscal and label printers in the ERP system, streamlining operations and reducing manual processes by 40%.',
+                'contactTitle': 'Contact Me',
+                'contactInfoTitle': 'Get In Touch',
+                'contactLocation': 'Wrocław, Poland',
+                'sendMessage': 'Send Message',
+                'copyright': '&copy; 2025 All Rights Reserved',
+                'footerCV': 'CV',
+                'modalTitle': 'Contact Me',
+                'openModalText': 'Send Me a Message',
+                'openModalText2': 'Send Message',
+                'sendModalMessage': 'Send Message',
+                'contactCardTitle': 'Let\'s Connect',
+                'contactCardText': 'Feel free to reach out for job opportunities, collaborations, or just to say hello. I\'m always interested in new projects and challenges!'
+            },
+            'pl': {
+                'heroTitle': 'Programista Full-stack & Analityk',
+                'heroSubtitle': 'Przekształcam Pomysły w Cyfrową Rzeczywistość',
+                'heroDescription': 'Z pasją tworzę wydajne, skalowalne rozwiązania wykorzystując nowoczesne technologie. Specjalizuję się w Java, Python, React oraz infrastrukturze chmurowej.',
+                'ctaContact': 'Kontakt',
+                'ctaProjects': 'Zobacz Projekty',
+                'aboutTitle': 'O Mnie',
+                'aboutDescription': 'Jestem programistą Full-stack i analitykiem z pasją do tworzenia wydajnych i skalowalnych aplikacji. Dzięki bogatemu doświadczeniu zarówno w technologiach front-end jak i back-end, lubię rozwiązywać złożone problemy i optymalizować systemy. Zawsze chętnie poznaję nowe technologie i metodologie, aby doskonalić swoje umiejętności i dostarczać lepsze rezultaty.',
+                'aboutExperience': 'W trakcie mojej kariery pracowałem przy różnorodnych projektach, od aplikacji na poziomie enterprise po małe narzędzia interaktywne. Wierzę w czysty kod, solidną architekturę i zasady projektowania skoncentrowane na użytkowniku.',
+                'yearsExperience': '5+',
+                'yearsExperienceLabel': 'Lat Doświadczenia',
+                'projectsCompleted': '50+',
+                'projectsCompletedLabel': 'Ukończonych Projektów',
+                'happyClients': '30+',
+                'happyClientsLabel': 'Zadowolonych Klientów',
+                'skillsTitle': 'Moje Umiejętności',
+                'programmingTitle': 'Języki Programowania',
+                'frameworksTitle': 'Frameworki i Biblioteki',
+                'cloudTitle': 'Chmura i DevOps',
+                'databaseTitle': 'Bazy Danych',
+                'architectureTitle': 'Architektura i Metodologie',
+                'aiTitle': 'AI i Narzędzia',
+                'projectsTitle': 'Ostatnie Projekty',
+                'project1Desc': 'Stworzyłem system do automatycznej analizy danych z możliwością zapisywania presetów użytkownika, poprawiając wydajność analizy o 40%.',
+                'project2Desc': 'Zbudowałem kompleksowy system zarządzania wyjątkami z powiadomieniami e-mail, skracając czas rozwiązywania błędów o 60%.',
+                'project3Desc': 'Zoptymalizowałem złożone zapytania SQL dla zwiększenia wydajności bazy danych, co skutkowało 70% szybszym wykonaniem zapytań.',
+                'viewProject': 'Zobacz Projekt',
+                'viewCode': 'Zobacz Kod',
+                'viewProject2': 'Zobacz Projekt',
+                'viewCode2': 'Zobacz Kod',
+                'viewProject3': 'Zobacz Projekt',
+                'viewCode3': 'Zobacz Kod',
+                'gamesTitle': 'Moje Gry',
+                'gamesDescription': 'Sprawdź gry, które stworzyłem przy użyciu JavaScript i HTML5 Canvas. Możesz w nie zagrać online lub zapoznać się z kodem źródłowym na GitHubie.',
+                'certificatesTitle': 'Certyfikaty',
+                'cert1Desc': 'Potwierdzona wiedza w zakresie tworzenia i utrzymywania aplikacji opartych na AWS, wykorzystujących podstawowe usługi AWS i najlepsze praktyki programistyczne.',
+                'cert2Desc': 'Potwierdza znajomość Spring Framework core, Spring MVC, Spring Boot, Spring Data oraz Spring Security.',
+                'cert3Desc': 'Certyfikowany w zakresie zrozumienia ram Scrum, wartości i praktyk, z umiejętnością stosowania Scrum w złożonych środowiskach.',
+                'viewCertificate': 'Zobacz Certyfikat',
+                'viewCertificate2': 'Zobacz Certyfikat',
+                'viewCertificate3': 'Zobacz Certyfikat',
+                'achievementsTitle': 'Osiągnięcia',
+                'achievement1Title': 'Wdrożenie Systemu Presetów Użytkownika',
+                'achievement1Desc': 'Opracowałem i zaimplementowałem funkcjonalność zapisywania presetów użytkownika do automatycznej analizy, skracając czas przygotowania analizy o 70% i poprawiając wydajność workflow.',
+                'achievement2Title': 'System Zarządzania Wyjątkami',
+                'achievement2Desc': 'Zbudowałem kompleksowy system zarządzania wyjątkami z powiadomieniami e-mail, zmniejszając czas rozwiązywania błędów o 60% i poprawiając niezawodność systemu.',
+                'achievement3Title': 'Optymalizacja Zapytań SQL',
+                'achievement3Desc': 'Zoptymalizowałem złożone zapytania SQL dla zwiększenia wydajności bazy danych, co skutkowało 70% szybszym wykonaniem zapytań i poprawą ogólnej responsywności aplikacji.',
+                'achievement4Title': 'Integracja Systemu ERP',
+                'achievement4Desc': 'Pomyślnie zintegrowałem drukarki fiskalne i etykietowe w systemie ERP, usprawniając operacje i zmniejszając procesy manualne o 40%.',
+                'contactTitle': 'Kontakt',
+                'contactInfoTitle': 'Skontaktuj się',
+                'contactLocation': 'Wrocław, Polska',
+                'sendMessage': 'Wyślij Wiadomość',
+                'copyright': '&copy; 2025 Wszelkie Prawa Zastrzeżone',
+                'footerCV': 'CV',
+                'modalTitle': 'Kontakt',
+                'openModalText': 'Wyślij Wiadomość',
+                'openModalText2': 'Wyślij Wiadomość',
+                'sendModalMessage': 'Wyślij Wiadomość',
+                'contactCardTitle': 'Nawiążmy Kontakt',
+                'contactCardText': 'Skontaktuj się ze mną w sprawie ofert pracy, współpracy lub po prostu, aby się przywitać. Zawsze interesują mnie nowe projekty i wyzwania!'
+            }
+        };
+
+        // Update content
+        Object.keys(elements[lang]).forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                if (id.includes('Desc') || id === 'aboutDescription' || id === 'aboutExperience' || id === 'gamesDescription' || id === 'heroDescription' || id === 'contactCardText') {
+                    element.innerText = elements[lang][id];
+                } else {
+                    element.innerHTML = elements[lang][id];
+                }
+            }
+        });
+
+        // Update language flag
+        currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
+    }
+
+    // Check if language preference is saved
+    const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+    applyLanguage(savedLanguage);
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', initEnhancements);
 </script>
 </body>
 </html>
