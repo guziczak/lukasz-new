@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Łukasz Guziczak - Full-stack Developer & Analyst. Expertise in Java, Python, React.js, and cloud technologies.">
+    <meta name="description"
+          content="Łukasz Guziczak - Full-stack Developer & Analyst. Expertise in Java, Python, React.js, and cloud technologies.">
     <title>Łukasz Guziczak | Full-stack Developer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -486,6 +487,7 @@
             position: relative;
             overflow: hidden;
         }
+
         .hero::before {
             content: "";
             position: absolute;
@@ -2665,8 +2667,12 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Ulepszenia dostępności */
@@ -2892,15 +2898,41 @@
         }
 
         /* Opóźnienie animacji dla każdego kolejnego elementu menu */
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(1) { transition-delay: 0.1s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(2) { transition-delay: 0.15s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(3) { transition-delay: 0.2s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(4) { transition-delay: 0.25s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(5) { transition-delay: 0.3s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(6) { transition-delay: 0.35s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(7) { transition-delay: 0.4s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(8) { transition-delay: 0.45s; }
-        .mobile-nav-menu.active .mobile-nav-item:nth-child(9) { transition-delay: 0.5s; }
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(2) {
+            transition-delay: 0.15s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(4) {
+            transition-delay: 0.25s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(5) {
+            transition-delay: 0.3s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(6) {
+            transition-delay: 0.35s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(7) {
+            transition-delay: 0.4s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(8) {
+            transition-delay: 0.45s;
+        }
+
+        .mobile-nav-menu.active .mobile-nav-item:nth-child(9) {
+            transition-delay: 0.5s;
+        }
 
         /* Ulepszone okno modalne */
         .modal {
@@ -3095,7 +3127,8 @@
             <li class="nav-item"><a href="#certificates">Certificates</a></li>
             <li class="nav-item"><a href="#testimonials">Testimonials</a></li>
             <li class="nav-item"><a href="#contact">Contact</a></li>
-            <li class="nav-item cv-nav-item"><a href="https://guziczak.github.io/lukasz/cv.html" target="_blank"><i class="fas fa-file-alt"></i> CV</a></li>
+            <li class="nav-item cv-nav-item"><a href="https://guziczak.github.io/lukasz/cv.html" target="_blank"><i
+                    class="fas fa-file-alt"></i> CV</a></li>
         </ul>
         <div class="utility-buttons">
             <div class="lang-dropdown">
@@ -3154,7 +3187,8 @@
                         <a href="https://github.com/guziczak" class="social-btn" target="_blank" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://linkedin.com/in/guziczak" class="social-btn" target="_blank" aria-label="LinkedIn">
+                        <a href="https://linkedin.com/in/guziczak" class="social-btn" target="_blank"
+                           aria-label="LinkedIn">
                             <i class="fab fa-linkedin-in"></i>
                         </a>
                         <a href="mailto:guziczak@pm.me" class="social-btn" aria-label="Email">
@@ -3190,9 +3224,12 @@
 
                     <div class="about-tab-content active" id="profile-content">
                         <p class="about-description" id="aboutDescription">
-                            I'm a Full-stack Developer and Analyst with a passion for building efficient and scalable applications.
-                            With extensive experience in both front-end and back-end technologies, I enjoy solving complex problems and optimizing systems.
-                            I'm always eager to learn new technologies and methodologies to improve my skills and deliver better results.
+                            I'm a Full-stack Developer and Analyst with a passion for building efficient and scalable
+                            applications.
+                            With extensive experience in both front-end and back-end technologies, I enjoy solving
+                            complex problems and optimizing systems.
+                            I'm always eager to learn new technologies and methodologies to improve my skills and
+                            deliver better results.
                         </p>
 
                         <div class="about-highlights">
@@ -3320,8 +3357,11 @@
     <section class="section" id="games">
         <div class="container">
             <h2 class="section-title animate" id="gamesTitle">My Games</h2>
-            <p class="animate" style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;" id="gamesDescription">
-                Check out the games I've developed using JavaScript and HTML5 Canvas. Feel free to play them online or explore the source code on GitHub.
+            <p class="animate"
+               style="text-align: center; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;"
+               id="gamesDescription">
+                Check out the games I've developed using JavaScript and HTML5 Canvas. Feel free to play them online or
+                explore the source code on GitHub.
             </p>
             <div class="games-grid">
                 <!-- Games will be loaded from CSV -->
@@ -3479,7 +3519,8 @@
                     <div class="form-feedback"></div>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" id="modalMessageInput" placeholder="Your Message" required></textarea>
+                    <textarea class="form-control" id="modalMessageInput" placeholder="Your Message"
+                              required></textarea>
                     <label for="modalMessageInput" class="form-label">Your Message</label>
                     <div class="form-error"></div>
                     <div class="form-feedback"></div>
@@ -3604,7 +3645,8 @@
             <a href="#games" class="footer-link">Games</a>
             <a href="#testimonials" class="footer-link">Testimonials</a>
             <a href="#contact" class="footer-link">Contact</a>
-            <a href="https://guziczak.github.io/lukasz/cv.html" class="footer-link footer-cv-link" id="footerCV" target="_blank">CV</a>
+            <a href="https://guziczak.github.io/lukasz/cv.html" class="footer-link footer-cv-link" id="footerCV"
+               target="_blank">CV</a>
         </div>
     </div>
 </footer>
@@ -3627,7 +3669,7 @@
                     header: true,
                     dynamicTyping: true,
                     skipEmptyLines: true,
-                    complete: function(results) {
+                    complete: function (results) {
                         resolve(results.data);
                     }
                 });
@@ -3742,7 +3784,7 @@
                     <div class="project-img-overlay"></div>
                     <div class="project-content">
                         <h3 class="project-title">${project.title}</h3>
-                        <p class="project-description" id="project${index+1}Desc">
+                        <p class="project-description" id="project${index + 1}Desc">
                             ${project.description}
                         </p>
                         <div class="project-tech-tags">
@@ -3913,8 +3955,8 @@
                     <div class="achievement-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <h3 class="achievement-title" id="achievement${index+1}Title">${achievement.title}</h3>
-                    <p class="achievement-description" id="achievement${index+1}Desc">
+                    <h3 class="achievement-title" id="achievement${index + 1}Title">${achievement.title}</h3>
+                    <p class="achievement-description" id="achievement${index + 1}Desc">
                         ${achievement.description}
                     </p>
                 `;
@@ -4020,9 +4062,9 @@
 
     // Zoptymalizowana obsługa przewijania z użyciem requestAnimationFrame
     let ticking = false;
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         if (!ticking) {
-            window.requestAnimationFrame(function() {
+            window.requestAnimationFrame(function () {
                 // Navbar Scroll Effect
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
@@ -4558,7 +4600,7 @@
                             observer.unobserve(entry.target);
                         }
                     });
-                }, { threshold: 0.2 });
+                }, {threshold: 0.2});
 
                 observer.observe(progressContainer);
             }
@@ -4730,7 +4772,7 @@
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 return context.formattedValue + '%';
                             }
                         }
@@ -4798,7 +4840,7 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.2 });
+            }, {threshold: 0.2});
 
             // Observe chart container
             observer.observe(document.querySelector('.skills-radar-container'));
@@ -4948,7 +4990,7 @@
 
     // Smooth Scrolling for Navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             if (this.getAttribute('href') !== '#') {
                 e.preventDefault();
 
@@ -4964,7 +5006,7 @@
     });
 
     // Back to Top Button
-    backToTopBtn.addEventListener('click', function() {
+    backToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
@@ -4972,7 +5014,7 @@
     });
 
     // Skrypt integrujący wszystkie ulepszenia
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // 1. Dodaj ulepszone funkcje wskaźnika przewijania
         function updateScrollProgress() {
             // Obsługa różnych przeglądarek (Safari, Chrome, Firefox)
@@ -4995,9 +5037,9 @@
 
         // 2. Zastąp domyślną obsługę przewijania
         let ticking = false;
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (!ticking) {
-                window.requestAnimationFrame(function() {
+                window.requestAnimationFrame(function () {
                     const navbar = document.getElementById('navbar');
                     const backToTopBtn = document.getElementById('backToTopBtn');
 
@@ -5083,7 +5125,7 @@
             let initialLeft, initialTop;
             const VIEWPORT_PADDING = 20;
 
-            modalHeader.addEventListener('mousedown', function(e) {
+            modalHeader.addEventListener('mousedown', function (e) {
                 if (e.button !== 0) return; // Tylko lewy przycisk myszy
 
                 isDragging = true;
@@ -5105,7 +5147,7 @@
                 e.preventDefault();
             });
 
-            document.addEventListener('mousemove', function(e) {
+            document.addEventListener('mousemove', function (e) {
                 if (!isDragging) return;
 
                 // Oblicz nową pozycję
@@ -5133,7 +5175,7 @@
                 modalContent.style.transform = 'none'; // Usuń transform, aby zapobiec konfliktom
             });
 
-            document.addEventListener('mouseup', function() {
+            document.addEventListener('mouseup', function () {
                 if (!isDragging) return;
 
                 isDragging = false;
@@ -5234,7 +5276,7 @@
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.classList.add('hidden');
-        }, 500); 
+        }, 500);
     });
 </script>
 </body>
