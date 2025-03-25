@@ -1,0 +1,4 @@
+title,description,imageSrc,tags,projectLink,codeLink
+Automatic Analysis System,Developed a system for automatic data analysis with user preset capabilities improving analysis efficiency by 40%.,/api/placeholder/400/320,java spring-boot react postgresql,#,#
+Exception Management Platform,Built a comprehensive exception tracking system with email notifications reducing error resolution time by 60%.,/api/placeholder/400/320,python django redis bootstrap,#,#
+SQL Query Optimizer,Optimized complex SQL queries for enhanced database performance resulting in 70% faster query execution.,/api/placeholder/400/320,sql mongodb javascript node.js database,#,#
