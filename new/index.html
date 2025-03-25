@@ -62,7 +62,6 @@
             padding: 0 20px;
         }
 
-        /* Preloader */
         .preloader {
             position: fixed;
             top: 0;
@@ -111,7 +110,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* Accessibility */
         .sr-only {
             position: absolute;
             width: 1px;
@@ -139,7 +137,6 @@
             top: 0;
         }
 
-        /* Scroll Progress Indicator */
         .scroll-progress {
             position: fixed;
             top: 0;
@@ -151,7 +148,6 @@
             transition: width 0.1s ease;
         }
 
-        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -329,7 +325,6 @@
             color: var(--dark-text);
         }
 
-        /* Enhanced Mobile Menu */
         .mobile-nav-menu {
             position: fixed;
             top: 0;
@@ -461,7 +456,6 @@
             margin-top: 1rem;
         }
 
-        /* Mobile menu overlay */
         .mobile-menu-overlay {
             position: fixed;
             top: 0;
@@ -481,7 +475,6 @@
             visibility: visible;
         }
 
-        /* Hero Section */
         .hero {
             padding: 8rem 0 5rem;
             position: relative;
@@ -500,7 +493,6 @@
             border-radius: 50%;
         }
 
-        /* Hero Particles */
         .hero-particles {
             position: absolute;
             top: 0;
@@ -552,12 +544,23 @@
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             background-clip: text;
             -webkit-background-clip: text;
-            color: transparent;
+            color: var(--primary-color); /* Fallback dla pluginów wymuszających tryb ciemny */
             -webkit-text-fill-color: transparent;
             line-height: 1.2;
             animation: gradient-shift 8s ease infinite;
             position: relative;
             z-index: 1;
+            mix-blend-mode: normal;
+            isolation: isolate;
+        }
+
+        @media (forced-colors: active), (prefers-contrast: more) {
+            .hero-title {
+                background: none;
+                -webkit-text-fill-color: var(--primary-color);
+                color: var(--primary-color);
+                animation: none;
+            }
         }
 
         @keyframes gradient-shift {
@@ -778,7 +781,6 @@
             color: white;
         }
 
-        /* Section Styles */
         .section {
             padding: 5rem 0;
             position: relative;
@@ -806,7 +808,6 @@
             border-radius: 2px;
         }
 
-        /* Parallax background */
         .parallax-bg {
             position: absolute;
             top: 0;
@@ -817,14 +818,12 @@
             transition: transform 0.1s ease-out;
         }
 
-        /* About Section */
         .about-content {
             display: flex;
             flex-direction: column;
             gap: 3rem;
         }
 
-        /* About Tabs */
         .about-tabs {
             display: flex;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -927,7 +926,6 @@
             font-size: 0.95rem;
         }
 
-        /* Timeline styling */
         .experience-timeline,
         .education-timeline {
             position: relative;
@@ -1057,7 +1055,6 @@
             overflow: hidden;
         }
 
-        /* Add decorative element to stats card */
         .stat-item::after {
             content: '';
             position: absolute;
@@ -1099,7 +1096,6 @@
             color: var(--gray-text);
         }
 
-        /* Skills Section */
         .skills-radar-container {
             margin-bottom: 3rem;
             padding: 2rem;
@@ -1229,7 +1225,6 @@
             margin-right: 0.5rem;
         }
 
-        /* Skill progress bars */
         .skill-level {
             margin-top: 0.5rem;
             width: 100%;
@@ -1263,7 +1258,6 @@
             margin-top: 0.3rem;
         }
 
-        /* Projects Section */
         .projects-filter {
             display: flex;
             flex-wrap: wrap;
@@ -1435,7 +1429,6 @@
             transform: translateX(5px);
         }
 
-        /* Games Section */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -1555,7 +1548,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Certificates Section */
         .certificates-filter {
             display: flex;
             flex-wrap: wrap;
@@ -1714,7 +1706,6 @@
             word-break: break-all;
         }
 
-        /* Testimonials Section */
         .testimonials-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -1814,7 +1805,6 @@
             font-size: 1.2rem;
         }
 
-        /* Achievements Section */
         .achievements-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1863,7 +1853,6 @@
             font-size: 0.95rem;
         }
 
-        /* Contact Section */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -2027,7 +2016,6 @@
             align-self: center;
         }
 
-        /* Enhanced Form Group */
         .form-group {
             position: relative;
             margin-bottom: 2rem;
@@ -2128,7 +2116,6 @@
             color: var(--secondary-color);
         }
 
-        /* Loading Spinner */
         .spinner {
             width: 20px;
             height: 20px;
@@ -2151,7 +2138,6 @@
             display: inline-block;
         }
 
-        /* Enhanced Modal */
         .modal {
             position: fixed;
             top: 0;
@@ -2220,7 +2206,7 @@
             padding: 1rem 1.5rem;
             border-radius: var(--border-radius) var(--border-radius) 0 0;
             margin-bottom: 0;
-            user-select: none; /* Prevent text selection */
+            user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
             -ms-user-select: none;
@@ -2280,7 +2266,6 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Footer */
         .footer {
             background-color: var(--light-card);
             padding: 3rem 0;
@@ -2303,7 +2288,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .footer-logo {
             font-family: var(--heading-font);
             font-weight: 700;
@@ -2354,7 +2338,6 @@
             color: white !important;
         }
 
-        /* Back to Top Button */
         .back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -2386,7 +2369,6 @@
             box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
         }
 
-        /* Language switcher dropdown */
         .lang-dropdown {
             position: relative;
         }
@@ -2453,7 +2435,6 @@
             color: var(--dark-text);
         }
 
-        /* Image Optimizations */
         .lazy-load {
             opacity: 0;
             transition: opacity 0.5s ease;
@@ -2463,7 +2444,6 @@
             opacity: 1;
         }
 
-        /* Accessibility Improvements */
         button:focus-visible,
         a:focus-visible,
         input:focus-visible,
@@ -2472,7 +2452,6 @@
             outline-offset: 2px;
         }
 
-        /* Print Styles */
         @media print {
             .navbar, .footer, .back-to-top, .hero-cta, .social-links, .contact-section {
                 display: none !important;
@@ -2515,7 +2494,6 @@
             }
         }
 
-        /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
@@ -2525,7 +2503,6 @@
             }
         }
 
-        /* Responsive Styles */
         @media (max-width: 1024px) {
             .hero-content {
                 flex-direction: column-reverse;
@@ -2650,9 +2627,6 @@
             }
         }
 
-        /* DODANE STYLE - ULEPSZENIA WIZUALNE I ANIMACYJNE */
-
-        /* Ulepszony preloader */
         .preloader {
             background: linear-gradient(135deg, var(--light-bg) 0%, #f0f4f8 100%);
             z-index: 10000;
@@ -2666,16 +2640,6 @@
             animation: spin 1s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Ulepszenia dostępności */
         .skip-link:focus {
             top: 10px;
             left: 50%;
@@ -2692,7 +2656,6 @@
             box-shadow: 0 0 0 3px rgba(0, 112, 243, 0.3);
         }
 
-        /* Płynniejsze animacje */
         .animate {
             opacity: 0;
             transform: translateY(30px);
@@ -2705,14 +2668,12 @@
             transform: translateY(0);
         }
 
-        /* Dodatkowe animacje dla kart */
         .animate-on-scroll {
             transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
             box-shadow 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
             opacity 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* Ulepszona animacja kart */
         .skill-card:hover,
         .project-card:hover,
         .testimonial-card:hover,
@@ -2732,7 +2693,6 @@
             box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
         }
 
-        /* Efekt naciśnięcia przycisków */
         .btn, .filter-btn, .social-btn, .theme-btn, .lang-btn {
             transform-style: preserve-3d;
             backface-visibility: hidden;
@@ -2746,7 +2706,6 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        /* Ulepszone wskaźniki interaktywności */
         .project-card::after,
         .certificate-card::after,
         .testimonial-card::after,
@@ -2772,7 +2731,6 @@
             opacity: 1;
         }
 
-        /* Lepszy wskaźnik przewijania */
         .scroll-progress {
             height: 4px;
             background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
@@ -2780,7 +2738,6 @@
             transition: width 0.05s linear;
         }
 
-        /* Wyraźniejsze wskazanie przycisku "Powrót do góry" */
         .back-to-top {
             transform: scale(0) rotate(-45deg);
             opacity: 0;
@@ -2815,7 +2772,6 @@
             opacity: 0;
         }
 
-        /* Podkreślenie aktywnego linku nawigacyjnego */
         .nav-item a.active::after {
             width: 100%;
             animation: navIndicator 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2834,10 +2790,9 @@
             }
         }
 
-        /* Ulepszenie menu mobilnego */
         .mobile-menu-overlay {
-            cursor: pointer; /* Wskazuje, że overlay jest klikalny */
-            transition: opacity 0.4s ease, visibility 0.4s ease; /* Płynniejsza animacja */
+            cursor: pointer;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .mobile-menu-btn {
@@ -2877,15 +2832,14 @@
         }
 
         .mobile-nav-menu {
-            box-shadow: -10px 0 25px rgba(0, 0, 0, 0.1); /* Lepszy cień */
-            z-index: 1501; /* Wyższy z-index niż overlay */
+            box-shadow: -10px 0 25px rgba(0, 0, 0, 0.1);
+            z-index: 1501;
         }
 
         body.dark-mode .mobile-nav-menu {
             box-shadow: -10px 0 25px rgba(0, 0, 0, 0.3);
         }
 
-        /* Animacja dla elementów menu mobilnego */
         .mobile-nav-item {
             opacity: 0;
             transform: translateX(20px);
@@ -2897,7 +2851,6 @@
             transform: translateX(0);
         }
 
-        /* Opóźnienie animacji dla każdego kolejnego elementu menu */
         .mobile-nav-menu.active .mobile-nav-item:nth-child(1) {
             transition-delay: 0.1s;
         }
@@ -2934,9 +2887,8 @@
             transition-delay: 0.5s;
         }
 
-        /* Ulepszone okno modalne */
         .modal {
-            backdrop-filter: blur(4px); /* Efekt rozmycia tła */
+            backdrop-filter: blur(4px);
             transition: opacity 0.4s cubic-bezier(0.19, 1, 0.22, 1), visibility 0.4s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
@@ -2958,10 +2910,9 @@
         .modal-header {
             cursor: move;
             position: relative;
-            padding-left: 2.5rem; /* Więcej miejsca dla ikony przesuwania */
+            padding-left: 2.5rem;
         }
 
-        /* Wskaźnik, że okno można przeciągać */
         .modal-header::before {
             content: '☰';
             position: absolute;
@@ -2973,7 +2924,6 @@
             color: white;
         }
 
-        /* Efekt naciśnięcia przycisków */
         .modal-close, #sendModalMessageBtn, #successDoneBtn {
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
@@ -2982,7 +2932,6 @@
             transform: scale(0.95);
         }
 
-        /* Dodajmy animację powodzenia */
         .modal-success {
             animation: successAppear 0.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
@@ -3014,7 +2963,6 @@
             }
         }
 
-        /* Płynniejsze przejścia w formularzu */
         .form-group {
             transition: all 0.3s ease;
         }
@@ -3028,7 +2976,7 @@
         }
 
         .form-feedback {
-            height: 20px; /* Stała wysokość dla płynniejszych przejść */
+            height: 20px;
             display: flex;
             align-items: center;
             opacity: 0;
@@ -3037,11 +2985,6 @@
 
         .form-feedback.error, .form-feedback.success {
             opacity: 1;
-        }
-
-        /* Style dla filtrowania projektów */
-        .project-card, .certificate-card {
-            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .projects-filter .filter-btn, .certificates-filter .filter-btn {
@@ -3069,7 +3012,6 @@
             transform: scaleX(1);
         }
 
-        /* Respektowanie preferencji użytkownika dotyczących redukcji ruchu */
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -3658,7 +3600,6 @@
 
 <!-- Scripts -->
 <script>
-    // Function to load CSV file
     async function loadCSV(filename) {
         try {
             const response = await fetch(filename);
@@ -3680,10 +3621,8 @@
         }
     }
 
-    // Initialize all data from CSV files
     async function initializeFromCSV() {
         try {
-            // Load all CSV data
             const skills = await loadCSV('data/skills.csv');
             const projects = await loadCSV('data/projects.csv');
             const games = await loadCSV('data/games.csv');
@@ -3693,7 +3632,6 @@
             const experiences = await loadCSV('data/experience.csv');
             const educations = await loadCSV('data/education.csv');
 
-            // Generate HTML for each section
             generateSkillsHTML(skills);
             generateProjectsHTML(projects);
             generateGamesHTML(games);
@@ -3703,16 +3641,13 @@
             generateExperienceHTML(experiences);
             generateEducationHTML(educations);
 
-            // After loading all data, initialize UI enhancements
             reinitializeUIComponents();
         } catch (error) {
             console.error("Error initializing from CSV:", error);
         }
     }
 
-    // Generate Skills HTML
     function generateSkillsHTML(skills) {
-        // Group skills by category
         const skillsByCategory = {};
         skills.forEach(skill => {
             if (!skillsByCategory[skill.category]) {
@@ -3721,13 +3656,11 @@
             skillsByCategory[skill.category].push(skill);
         });
 
-        // Generate HTML for each skill category
         const skillsContainer = document.querySelector('.skills-list');
         if (!skillsContainer) return;
 
         skillsContainer.innerHTML = '';
 
-        // Mapping of categories to icons
         const categoryIcons = {
             'Programming Languages': 'fas fa-code',
             'Frameworks & Libraries': 'fas fa-laptop-code',
@@ -3739,7 +3672,6 @@
 
         let delay = 0;
 
-        // Create HTML for each category
         Object.keys(skillsByCategory).forEach(category => {
             const skillsInCategory = skillsByCategory[category];
 
@@ -3766,7 +3698,6 @@
         });
     }
 
-    // Generate Projects HTML
     function generateProjectsHTML(projects) {
         const projectsContainer = document.querySelector('.projects-container');
         if (!projectsContainer) return;
@@ -3809,7 +3740,6 @@
         });
     }
 
-    // Generate Games HTML
     function generateGamesHTML(games) {
         const gamesGrid = document.querySelector('.games-grid');
         if (!gamesGrid) return;
@@ -3843,7 +3773,6 @@
         });
     }
 
-    // Generate Certificates HTML
     function generateCertificatesHTML(certificates) {
         const certificatesGrid = document.querySelector('.certificates-grid');
         if (!certificatesGrid) return;
@@ -3885,7 +3814,6 @@
         });
     }
 
-    // Generate Testimonials HTML
     function generateTestimonialsHTML(testimonials) {
         const testimonialsContainer = document.querySelector('.testimonials-container');
         if (!testimonialsContainer) return;
@@ -3897,7 +3825,6 @@
             testimonialCard.className = 'testimonial-card animate';
             testimonialCard.style.animationDelay = `${index * 0.2}s`;
 
-            // Create rating stars
             const stars = [];
             const fullStars = Math.floor(testimonial.rating);
             const hasHalfStar = testimonial.rating % 1 >= 0.5;
@@ -3939,7 +3866,6 @@
         });
     }
 
-    // Generate Achievements HTML
     function generateAchievementsHTML(achievements) {
         const achievementsList = document.querySelector('.achievements-list');
         if (!achievementsList) return;
@@ -3965,7 +3891,6 @@
         });
     }
 
-    // Generate Experience Timeline HTML
     function generateExperienceHTML(experiences) {
         const experienceTimeline = document.querySelector('.experience-timeline');
         if (!experienceTimeline) return;
@@ -3990,7 +3915,6 @@
         });
     }
 
-    // Generate Education Timeline HTML
     function generateEducationHTML(educations) {
         const educationTimeline = document.querySelector('.education-timeline');
         if (!educationTimeline) return;
@@ -4015,37 +3939,29 @@
         });
     }
 
-    // Reinitialize UI components after loading CSV data
     function reinitializeUIComponents() {
-        // Reinitialize skill progress bars
         if (typeof enhanceSkillCards === 'function') {
             enhanceSkillCards();
         }
 
-        // Reinitialize project filters
         if (typeof initProjectFilter === 'function') {
             initProjectFilter();
         }
 
-        // Reinitialize certificate filters
         if (typeof initCertificateFilter === 'function') {
             initCertificateFilter();
         }
 
-        // Implement lazy loading for newly loaded images
         if (typeof implementLazyLoading === 'function') {
             implementLazyLoading();
         }
 
-        // Enhance scroll animations
         if (typeof enhanceScrollAnimations === 'function') {
             enhanceScrollAnimations();
         }
     }
 
-    // Bardziej precyzyjna funkcja wskaźnika przewijania z obsługą wielu przeglądarek
     function updateScrollProgress() {
-        // Obsługa różnych przeglądarek (Safari, Chrome, Firefox)
         const scrollable = Math.max(
             document.documentElement.scrollHeight,
             document.body.scrollHeight
@@ -4060,29 +3976,23 @@
         scrollProgress.style.width = Math.min(100, Math.max(0, progressPercentage)) + '%';
     }
 
-    // Zoptymalizowana obsługa przewijania z użyciem requestAnimationFrame
     let ticking = false;
     window.addEventListener('scroll', function () {
         if (!ticking) {
             window.requestAnimationFrame(function () {
-                // Navbar Scroll Effect
                 if (window.scrollY > 50) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
 
-                // Back to Top Button
                 if (window.scrollY > 500) {
                     backToTopBtn.classList.add('visible');
                 } else {
                     backToTopBtn.classList.remove('visible');
                 }
 
-                // Update Scroll Progress
                 updateScrollProgress();
-
-                // Update active nav link
                 updateActiveNavLink();
 
                 ticking = false;
@@ -4091,7 +4001,6 @@
         }
     });
 
-    // Ulepszone filtrowanie projektów
     function initProjectFilter() {
         const projectFilterButtons = document.querySelectorAll('.projects-filter .filter-btn');
         const projectCards = document.querySelectorAll('.project-card');
@@ -4100,43 +4009,33 @@
 
         projectFilterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Usuń aktywną klasę ze wszystkich przycisków
                 projectFilterButtons.forEach(btn => btn.classList.remove('active'));
-
-                // Dodaj aktywną klasę do klikniętego przycisku
                 button.classList.add('active');
 
-                // Pobierz wartość filtra
                 const filterValue = button.getAttribute('data-filter');
 
-                // Animacja filtrowania projektów
                 if (filterValue === 'all') {
-                    // Pokaż wszystkie projekty z animacją
                     projectCards.forEach((card, index) => {
                         setTimeout(() => {
                             card.style.opacity = '1';
                             card.style.transform = 'translateY(0)';
                             card.style.display = 'block';
-                        }, index * 50); // Stopniowe pojawianie się
+                        }, index * 50);
                     });
                 } else {
-                    // Przefiltruj projekty
                     projectCards.forEach((card, index) => {
                         const tags = card.getAttribute('data-tags');
 
                         if (tags && tags.includes(filterValue)) {
-                            // Najpierw ukryj (dla jednolitego efektu)
                             card.style.opacity = '0';
                             card.style.transform = 'translateY(20px)';
 
-                            // Następnie pokaż z opóźnieniem
                             setTimeout(() => {
                                 card.style.opacity = '1';
                                 card.style.transform = 'translateY(0)';
                                 card.style.display = 'block';
-                            }, 300 + (index * 50)); // Stopniowe pojawianie się
+                            }, 300 + (index * 50));
                         } else {
-                            // Ukryj niepasujące projekty
                             card.style.opacity = '0';
                             card.style.transform = 'translateY(20px)';
 
@@ -4150,7 +4049,6 @@
         });
     }
 
-    // Ulepszone filtrowanie certyfikatów
     function initCertificateFilter() {
         const certificateFilterButtons = document.querySelectorAll('.certificates-filter .filter-btn');
         const certificateCards = document.querySelectorAll('.certificate-card');
@@ -4159,32 +4057,24 @@
 
         certificateFilterButtons.forEach(button => {
             button.addEventListener('click', () => {
-                // Usuń aktywną klasę ze wszystkich przycisków
                 certificateFilterButtons.forEach(btn => btn.classList.remove('active'));
-
-                // Dodaj aktywną klasę do klikniętego przycisku
                 button.classList.add('active');
 
-                // Pobierz wartość filtra
                 const filterValue = button.getAttribute('data-filter');
 
-                // Filtruj certyfikaty z animacjami
                 certificateCards.forEach((card, index) => {
                     const category = card.getAttribute('data-category');
 
                     if (filterValue === 'all' || category === filterValue) {
-                        // Najpierw ukryj (dla jednolitego efektu)
                         card.style.opacity = '0';
                         card.style.transform = 'translateY(20px)';
                         card.style.display = 'block';
 
-                        // Następnie pokaż z opóźnieniem
                         setTimeout(() => {
                             card.style.opacity = '1';
                             card.style.transform = 'translateY(0)';
-                        }, 100 + (index * 50)); // Stopniowe pojawianie się
+                        }, 100 + (index * 50));
                     } else {
-                        // Ukryj niepasujące certyfikaty
                         card.style.opacity = '0';
                         card.style.transform = 'translateY(20px)';
 
@@ -4197,45 +4087,36 @@
         });
     }
 
-    // Ulepszenie animacji przewijania
     function enhanceScrollAnimations() {
-        // Ulepszony IntersectionObserver z progresywnym opóźnieniem
         const animationObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
-                    // Dodaj opóźnienie zależne od pozycji elementu
                     setTimeout(() => {
                         entry.target.classList.add('active');
-                    }, index * 100); // Stopniowe opóźnienie dla każdego elementu
+                    }, index * 100);
 
                     animationObserver.unobserve(entry.target);
                 }
             });
         }, {
             threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px' // Wcześniejsze rozpoczęcie animacji
+            rootMargin: '0px 0px -50px 0px'
         });
 
-        // Obserwuj wszystkie animowane elementy
         document.querySelectorAll('.animate').forEach((element, index) => {
-            // Ustaw domyślne opóźnienie, jeśli nie określono
             if (!element.style.animationDelay) {
                 element.style.animationDelay = `${index * 0.05}s`;
             }
             animationObserver.observe(element);
         });
 
-        // Dodaj dodatkowe klasy dla głębszych animacji
         document.querySelectorAll('.skill-card, .project-card, .certificate-card, .testimonial-card, .achievement-card').forEach(card => {
             card.classList.add('animate-on-scroll');
         });
     }
 
-    // Zapobieganie błędom animacji przy odświeżaniu strony na określonej sekcji
     function handleRefreshAnimations() {
-        // Sprawdź, czy strona została odświeżona w środku (nie na górze)
         if (window.scrollY > 100) {
-            // Natychmiast aktywuj wszystkie elementy powyżej aktualnego przewinięcia
             const animatedElements = document.querySelectorAll('.animate');
             animatedElements.forEach(element => {
                 const rect = element.getBoundingClientRect();
@@ -4244,12 +4125,10 @@
                 }
             });
 
-            // Aktywuj paski postępu umiejętności, jeśli są widoczne
             initSkillBars();
         }
     }
 
-    // Inicjalizuj paski postępu umiejętności
     function initSkillBars() {
         const skillProgressBars = document.querySelectorAll('.skill-progress-bar');
 
@@ -4257,9 +4136,7 @@
             const parentItem = bar.closest('.skill-item');
             if (parentItem) {
                 const rect = bar.getBoundingClientRect();
-                // Jeśli pasek jest widoczny w oknie przeglądarki
                 if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    // Pobierz poziom umiejętności z atrybutu data-level lub z rodzica
                     const levelValue = parentItem.getAttribute('data-level') || parentItem.textContent.match(/\d+/);
 
                     if (levelValue) {
@@ -4272,9 +4149,7 @@
         });
     }
 
-    // Ulepszona walidacja formularza
     function enhanceContactForm() {
-        // Elementy formularza
         const modalNameInput = document.getElementById('modalNameInput');
         const modalEmailInput = document.getElementById('modalEmailInput');
         const modalSubjectInput = document.getElementById('modalSubjectInput');
@@ -4286,20 +4161,16 @@
 
         if (!modalNameInput || !modalEmailInput || !modalSubjectInput || !modalMessageInput) return;
 
-        // Zmienne do śledzenia timeoutów walidacji
         let validationTimeouts = {};
 
-        // Funkcja walidacji z opóźnieniem
         function validateInput(input, errorMsg, immediate = false) {
             const formGroup = input.closest('.form-group');
             const feedbackElement = formGroup.querySelector('.form-feedback');
 
-            // Wyczyść istniejący timeout
             if (validationTimeouts[input.id]) {
                 clearTimeout(validationTimeouts[input.id]);
             }
 
-            // Ustaw timeout walidacji (natychmiastowy, jeśli wymagany)
             validationTimeouts[input.id] = setTimeout(() => {
                 if (!input.value.trim()) {
                     formGroup.classList.add('error');
@@ -4314,21 +4185,18 @@
                     feedbackElement.innerHTML = '<i class="fas fa-check-circle form-feedback-icon"></i> Wygląda dobrze!';
                     return true;
                 }
-            }, immediate ? 0 : 600); // Opóźnienie walidacji dla lepszego UX
+            }, immediate ? 0 : 600);
         }
 
-        // Funkcja walidacji emaila
         function validateEmail(input, immediate = false) {
             const formGroup = input.closest('.form-group');
             const feedbackElement = formGroup.querySelector('.form-feedback');
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-            // Wyczyść istniejący timeout
             if (validationTimeouts[input.id]) {
                 clearTimeout(validationTimeouts[input.id]);
             }
 
-            // Ustaw timeout walidacji
             validationTimeouts[input.id] = setTimeout(() => {
                 if (!input.value.trim() || !emailPattern.test(input.value)) {
                     formGroup.classList.add('error');
@@ -4346,10 +4214,8 @@
             }, immediate ? 0 : 600);
         }
 
-        // Zdarzenia dla walidacji w czasie rzeczywistym
         if (modalNameInput) {
             modalNameInput.addEventListener('input', () => {
-                // Usuń klasę błędu podczas pisania
                 const formGroup = modalNameInput.closest('.form-group');
                 formGroup.classList.remove('error');
             });
@@ -4359,7 +4225,6 @@
 
         if (modalEmailInput) {
             modalEmailInput.addEventListener('input', () => {
-                // Usuń klasę błędu podczas pisania
                 const formGroup = modalEmailInput.closest('.form-group');
                 formGroup.classList.remove('error');
             });
@@ -4369,7 +4234,6 @@
 
         if (modalSubjectInput) {
             modalSubjectInput.addEventListener('input', () => {
-                // Usuń klasę błędu podczas pisania
                 const formGroup = modalSubjectInput.closest('.form-group');
                 formGroup.classList.remove('error');
             });
@@ -4379,7 +4243,6 @@
 
         if (modalMessageInput) {
             modalMessageInput.addEventListener('input', () => {
-                // Usuń klasę błędu podczas pisania
                 const formGroup = modalMessageInput.closest('.form-group');
                 formGroup.classList.remove('error');
             });
@@ -4387,40 +4250,29 @@
             modalMessageInput.addEventListener('blur', () => validateInput(modalMessageInput, 'Wprowadź swoją wiadomość', true));
         }
 
-        // Obsługa wysyłania formularza
         if (sendModalMessageBtn) {
             sendModalMessageBtn.addEventListener('click', (e) => {
                 e.preventDefault();
 
-                // Zwaliduj wszystkie pola
                 const isNameValid = validateInput(modalNameInput, 'Wprowadź swoje imię', true);
                 const isEmailValid = validateEmail(modalEmailInput, true);
                 const isSubjectValid = validateInput(modalSubjectInput, 'Wprowadź temat wiadomości', true);
                 const isMessageValid = validateInput(modalMessageInput, 'Wprowadź swoją wiadomość', true);
 
-                // Opóźnienie, aby dać czas na zakończenie animacji walidacji
                 setTimeout(() => {
                     if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
-                        // Pokaż stan ładowania
                         sendModalMessageBtn.disabled = true;
                         sendModalMessageBtn.classList.add('loading');
 
-                        // Symuluj proces wysyłania
                         setTimeout(() => {
-                            // Formatuj wiadomość z informacjami o nadawcy
                             const formattedMessage = `Wiadomość od: ${modalNameInput.value.trim()} (${modalEmailInput.value.trim()})\n\n${modalMessageInput.value.trim()}`;
-
-                            // Utwórz link mailto z tematem i treścią
                             const mailtoLink = `mailto:guziczak@pm.me?subject=${encodeURIComponent(modalSubjectInput.value.trim())}&body=${encodeURIComponent(formattedMessage)}`;
 
-                            // Resetuj stan ładowania
                             sendModalMessageBtn.disabled = false;
                             sendModalMessageBtn.classList.remove('loading');
 
-                            // Otwórz klienta poczty
                             window.location.href = mailtoLink;
 
-                            // Pokaż komunikat powodzenia
                             if (form && successMessage) {
                                 form.style.display = 'none';
                                 successMessage.style.display = 'block';
@@ -4431,7 +4283,6 @@
             });
         }
 
-        // Przycisk "Gotowe" po sukcesie
         if (successDoneBtn) {
             successDoneBtn.addEventListener('click', () => {
                 const contactModal = document.getElementById('contactModal');
@@ -4439,7 +4290,6 @@
                     contactModal.classList.remove('active');
                 }
 
-                // Resetuj formularz po opóźnieniu
                 setTimeout(() => {
                     if (form && successMessage) {
                         form.style.display = 'block';
@@ -4448,7 +4298,6 @@
 
                     if (form) form.reset();
 
-                    // Resetuj stany walidacji
                     document.querySelectorAll('.form-group').forEach(group => {
                         group.classList.remove('success', 'error');
                         const feedback = group.querySelector('.form-feedback');
@@ -4461,7 +4310,6 @@
             });
         }
 
-        // Dodaj autofokus na pierwszym polu po otwarciu modalu
         const openModalButtons = [
             document.getElementById('openContactModalBtn'),
             document.getElementById('openContactModalBtn2')
@@ -4478,7 +4326,6 @@
         });
     }
 
-    // DOM Elements
     const preloader = document.getElementById('preloader');
     const scrollProgress = document.getElementById('scrollProgress');
     const navbar = document.getElementById('navbar');
@@ -4498,7 +4345,6 @@
     const aboutTabs = document.querySelectorAll('.about-tab');
     const aboutTabContents = document.querySelectorAll('.about-tab-content');
 
-    // Modal Elements
     const contactModal = document.getElementById('contactModal');
     const openContactModalBtn = document.getElementById('openContactModalBtn');
     const openContactModalBtn2 = document.getElementById('openContactModalBtn2');
@@ -4507,27 +4353,19 @@
     const modalHeader = document.getElementById('modalHeader');
     const sendModalMessageBtn = document.getElementById('sendModalMessageBtn');
 
-    // Initialize About Tabs
     function initAboutTabs() {
         aboutTabs.forEach(tab => {
             tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
                 aboutTabs.forEach(t => t.classList.remove('active'));
                 aboutTabContents.forEach(content => content.classList.remove('active'));
-
-                // Add active class to clicked tab
                 tab.classList.add('active');
-
-                // Show associated content
                 const tabContentId = tab.getAttribute('data-tab') + '-content';
                 document.getElementById(tabContentId).classList.add('active');
             });
         });
     }
 
-    // Enhanced skill cards
     function enhanceSkillCards() {
-        // Array of skills with their levels (out of 100)
         const skillLevels = {
             'Java': 95,
             'Python': 90,
@@ -4561,15 +4399,12 @@
             'Machine Learning Basics': 75
         };
 
-        // Get all skill items
         const skillItems = document.querySelectorAll('.skill-item');
 
         skillItems.forEach(item => {
             const skillName = item.textContent.trim();
             if (skillLevels[skillName]) {
                 const level = skillLevels[skillName];
-
-                // Create skill level elements
                 const skillLevel = document.createElement('div');
                 skillLevel.className = 'skill-level';
 
@@ -4578,19 +4413,17 @@
 
                 const progressBar = document.createElement('div');
                 progressBar.className = 'skill-progress-bar';
-                progressBar.style.width = '0%'; // Start at 0 for animation
+                progressBar.style.width = '0%';
 
                 const levelText = document.createElement('div');
                 levelText.className = 'skill-level-text';
                 levelText.textContent = `${level}%`;
 
-                // Append elements
                 progressContainer.appendChild(progressBar);
                 skillLevel.appendChild(progressContainer);
                 skillLevel.appendChild(levelText);
                 item.appendChild(skillLevel);
 
-                // Set up animation on scroll
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
@@ -4607,31 +4440,21 @@
         });
     }
 
-    // Add Hero Particles
     function addHeroParticles() {
         const hero = document.querySelector('.hero');
         const particleContainer = document.createElement('div');
         particleContainer.className = 'hero-particles';
 
-        // Create particles
         for (let i = 0; i < 15; i++) {
             const particle = document.createElement('div');
             particle.className = 'particle';
 
-            // Random position
             const top = Math.random() * 100;
             const left = Math.random() * 100;
-
-            // Random size (5-15px)
             const size = Math.random() * 10 + 5;
-
-            // Random opacity (0.1-0.3)
             const opacity = Math.random() * 0.2 + 0.1;
-
-            // Random animation delay
             const delay = Math.random() * 5;
 
-            // Apply styles
             particle.style.top = `${top}%`;
             particle.style.left = `${left}%`;
             particle.style.width = `${size}px`;
@@ -4645,7 +4468,6 @@
         hero.insertBefore(particleContainer, hero.firstChild);
     }
 
-    // Theme Toggle
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         const isDarkMode = document.body.classList.contains('dark-mode');
@@ -4661,7 +4483,6 @@
         }
     }
 
-    // Initialize Theme
     const savedDarkMode = localStorage.getItem('darkMode') === 'true';
     if (savedDarkMode) {
         document.body.classList.add('dark-mode');
@@ -4669,7 +4490,6 @@
         themeIcon.classList.add('fa-sun');
     }
 
-    // Mobile Menu Toggle
     function toggleMobileMenu() {
         const mobileMenu = document.getElementById('mobileNavMenu');
         mobileMenu.classList.toggle('active');
@@ -4678,15 +4498,14 @@
         if (mobileMenu.classList.contains('active')) {
             menuIcon.classList.remove('fa-bars');
             menuIcon.classList.add('fa-times');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         } else {
             menuIcon.classList.remove('fa-times');
             menuIcon.classList.add('fa-bars');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         }
     }
 
-    // Update active navigation link
     function updateActiveNavLink() {
         const sections = document.querySelectorAll('section');
         const navItems = document.querySelectorAll('.nav-item a');
@@ -4710,12 +4529,10 @@
         });
     }
 
-    // Initialize Radar Chart for Skills
     function initializeRadarChart() {
         const ctx = document.getElementById('skillsRadarChart');
 
         if (ctx) {
-            // Data for the chart
             const data = {
                 labels: [
                     'Frontend Development',
@@ -4737,7 +4554,6 @@
                 }]
             };
 
-            // Configuration options
             const options = {
                 scale: {
                     min: 0,
@@ -4787,7 +4603,6 @@
                 maintainAspectRatio: true
             };
 
-            // Function to update colors in dark mode
             function updateChartColors() {
                 const isDarkMode = document.body.classList.contains('dark-mode');
 
@@ -4806,29 +4621,22 @@
                 }
             }
 
-            // Create chart
             window.skillsChart = new Chart(ctx, {
                 type: 'radar',
                 data: data,
                 options: options
             });
 
-            // Update colors when toggling theme
             themeToggle.addEventListener('click', updateChartColors);
-
-            // Set initial colors
             updateChartColors();
 
-            // Animate chart on scroll
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Animate data on chart
                         const originalData = [...window.skillsChart.data.datasets[0].data];
                         window.skillsChart.data.datasets[0].data = [0, 0, 0, 0, 0, 0];
                         window.skillsChart.update();
 
-                        // Gradually increase values
                         for (let i = 0; i <= 20; i++) {
                             setTimeout(() => {
                                 const newData = originalData.map(value => value * (i / 20));
@@ -4842,18 +4650,15 @@
                 });
             }, {threshold: 0.2});
 
-            // Observe chart container
             observer.observe(document.querySelector('.skills-radar-container'));
         }
     }
 
-    // Language Switcher
     function changeLanguage(lang) {
         localStorage.setItem('selectedLanguage', lang);
         applyLanguage(lang);
     }
 
-    // Function to apply language
     function applyLanguage(lang) {
         const elements = {
             'en': {
@@ -4968,7 +4773,6 @@
             }
         };
 
-        // Update content
         Object.keys(elements[lang]).forEach(id => {
             const element = document.getElementById(id);
             if (element) {
@@ -4980,15 +4784,12 @@
             }
         });
 
-        // Update language flag
         currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
     }
 
-    // Check if language preference is saved
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     applyLanguage(savedLanguage);
 
-    // Smooth Scrolling for Navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             if (this.getAttribute('href') !== '#') {
@@ -5005,7 +4806,6 @@
         });
     });
 
-    // Back to Top Button
     backToTopBtn.addEventListener('click', function () {
         window.scrollTo({
             top: 0,
@@ -5013,11 +4813,8 @@
         });
     });
 
-    // Skrypt integrujący wszystkie ulepszenia
     document.addEventListener('DOMContentLoaded', function () {
-        // 1. Dodaj ulepszone funkcje wskaźnika przewijania
         function updateScrollProgress() {
-            // Obsługa różnych przeglądarek (Safari, Chrome, Firefox)
             const scrollable = Math.max(
                 document.documentElement.scrollHeight,
                 document.body.scrollHeight
@@ -5035,7 +4832,6 @@
             }
         }
 
-        // 2. Zastąp domyślną obsługę przewijania
         let ticking = false;
         window.addEventListener('scroll', function () {
             if (!ticking) {
@@ -5043,24 +4839,19 @@
                     const navbar = document.getElementById('navbar');
                     const backToTopBtn = document.getElementById('backToTopBtn');
 
-                    // Efekt przewijania nawigacji
                     if (navbar && window.scrollY > 50) {
                         navbar.classList.add('scrolled');
                     } else if (navbar) {
                         navbar.classList.remove('scrolled');
                     }
 
-                    // Przycisk "Powrót do góry"
                     if (backToTopBtn && window.scrollY > 500) {
                         backToTopBtn.classList.add('visible');
                     } else if (backToTopBtn) {
                         backToTopBtn.classList.remove('visible');
                     }
 
-                    // Aktualizacja wskaźnika przewijania
                     updateScrollProgress();
-
-                    // Aktualizacja aktywnego linku nawigacyjnego
                     updateActiveNavLink();
 
                     ticking = false;
@@ -5069,7 +4860,6 @@
             }
         });
 
-        // 3. Ulepszenia menu mobilnego
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileNavMenu = document.getElementById('mobileNavMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -5081,14 +4871,14 @@
                 mobileMenuOverlay.classList.toggle('active');
 
                 if (mobileNavMenu.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden'; // Zapobiega przewijaniu
+                    document.body.style.overflow = 'hidden';
                     const menuIcon = document.getElementById('menuIcon');
                     if (menuIcon) {
                         menuIcon.classList.remove('fa-bars');
                         menuIcon.classList.add('fa-times');
                     }
                 } else {
-                    document.body.style.overflow = ''; // Przywróć przewijanie
+                    document.body.style.overflow = '';
                     const menuIcon = document.getElementById('menuIcon');
                     if (menuIcon) {
                         menuIcon.classList.remove('fa-times');
@@ -5104,13 +4894,11 @@
                 mobileMenuClose.addEventListener('click', toggleMobileMenu);
             }
 
-            // Zamknij menu po kliknięciu w link
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', toggleMobileMenu);
             });
         }
 
-        // 4. Ulepszenia kontaktu modalnego
         const modalContent = document.querySelector('.modal-content.draggable');
         const modalHeader = document.getElementById('modalHeader');
         const contactModal = document.getElementById('contactModal');
@@ -5119,60 +4907,50 @@
         const closeModalBtn = document.getElementById('closeModalBtn');
 
         if (modalContent && modalHeader && contactModal) {
-            // Poprawiona wersja funkcji przeciągania
             let isDragging = false;
             let startX, startY;
             let initialLeft, initialTop;
             const VIEWPORT_PADDING = 20;
 
             modalHeader.addEventListener('mousedown', function (e) {
-                if (e.button !== 0) return; // Tylko lewy przycisk myszy
+                if (e.button !== 0) return;
 
                 isDragging = true;
 
-                // Pobierz bieżącą pozycję modalu
                 const rect = modalContent.getBoundingClientRect();
                 initialLeft = rect.left;
                 initialTop = rect.top;
 
-                // Pobierz pozycję myszy
                 startX = e.clientX;
                 startY = e.clientY;
 
-                // Zmień kursor
                 modalHeader.style.cursor = 'grabbing';
-                document.body.style.userSelect = 'none'; // Zapobiega zaznaczaniu tekstu
+                document.body.style.userSelect = 'none';
 
-                // Zapobiega domyślnemu zachowaniu
                 e.preventDefault();
             });
 
             document.addEventListener('mousemove', function (e) {
                 if (!isDragging) return;
 
-                // Oblicz nową pozycję
                 const deltaX = e.clientX - startX;
                 const deltaY = e.clientY - startY;
 
                 const newLeft = initialLeft + deltaX;
                 const newTop = initialTop + deltaY;
 
-                // Pobierz wymiary modalu
                 const modalWidth = modalContent.offsetWidth;
                 const modalHeight = modalContent.offsetHeight;
 
-                // Ogranicz do granic okna przeglądarki
                 const maxLeft = window.innerWidth - modalWidth - VIEWPORT_PADDING;
                 const maxTop = window.innerHeight - modalHeight - VIEWPORT_PADDING;
 
-                // Zastosuj ograniczenia
                 const constrainedLeft = Math.max(VIEWPORT_PADDING, Math.min(newLeft, maxLeft));
                 const constrainedTop = Math.max(VIEWPORT_PADDING, Math.min(newTop, maxTop));
 
-                // Ustaw nową pozycję
                 modalContent.style.left = `${constrainedLeft}px`;
                 modalContent.style.top = `${constrainedTop}px`;
-                modalContent.style.transform = 'none'; // Usuń transform, aby zapobiec konfliktom
+                modalContent.style.transform = 'none';
             });
 
             document.addEventListener('mouseup', function () {
@@ -5180,20 +4958,17 @@
 
                 isDragging = false;
                 modalHeader.style.cursor = 'move';
-                document.body.style.userSelect = ''; // Przywróć zaznaczanie tekstu
+                document.body.style.userSelect = '';
             });
 
-            // Obsługa otwierania/zamykania modalu
             if (openContactModalBtn && openContactModalBtn2 && closeModalBtn) {
                 function openModal() {
                     contactModal.classList.add('active');
 
-                    // Wyśrodkuj modal
                     modalContent.style.top = '50%';
                     modalContent.style.left = '50%';
                     modalContent.style.transform = 'translate(-50%, -50%)';
 
-                    // Zacznij od pierwszego pola po otwarciu
                     setTimeout(() => {
                         const firstInput = document.getElementById('modalNameInput');
                         if (firstInput) firstInput.focus();
@@ -5208,14 +4983,12 @@
                 openContactModalBtn2.addEventListener('click', openModal);
                 closeModalBtn.addEventListener('click', closeModal);
 
-                // Zamknij modal po kliknięciu poza nim
                 contactModal.addEventListener('click', (e) => {
                     if (e.target === contactModal) {
                         closeModal();
                     }
                 });
 
-                // Zamknij modal klawiszem Escape
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && contactModal.classList.contains('active')) {
                         closeModal();
@@ -5224,55 +4997,34 @@
             }
         }
 
-        // 5. Inicjalizacja ulepszonych filtrów
         initProjectFilter();
         initCertificateFilter();
-
-        // 6. Ulepszone animacje
         enhanceScrollAnimations();
         handleRefreshAnimations();
-
-        // 7. Ulepszona walidacja formularza
         enhanceContactForm();
 
-        // 8. Dodatkowe ulepszenia
-
-        // Dodaj maksymalny czas dla preloadera
         setTimeout(() => {
             const preloader = document.getElementById('preloader');
             if (preloader) preloader.classList.add('hidden');
         }, 3000);
 
-        // Początkowa aktualizacja wskaźnika przewijania
         updateScrollProgress();
 
-        // Dodaj klasę animate-on-scroll do wszystkich kart
         document.querySelectorAll('.skill-card, .project-card, .certificate-card, .testimonial-card, .achievement-card, .game-card').forEach(card => {
             card.classList.add('animate-on-scroll');
         });
 
-        // Inicjalizacja pasków postępu umiejętności
         initSkillBars();
-
-        // Inicjalizacja tabów About
         initAboutTabs();
-
-        // Inicjalizacja wykresu umiejętności
         initializeRadarChart();
-
-        // Dodaj cząsteczki do sekcji hero
         addHeroParticles();
-
-        // Inicjalizuj wszystkie dane z plików CSV
         initializeFromCSV();
 
-        // Theme toggle functionality
         if (themeToggle) {
             themeToggle.addEventListener('click', toggleDarkMode);
         }
     });
 
-    // Hide preloader when page is loaded
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.classList.add('hidden');
