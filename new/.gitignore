@@ -1,0 +1,58 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+*.iws
+.idea_modules/
+out/
+target/
+
+# Pliki konfiguracyjne IntelliJ
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# Generowane pliki
+.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Maven
+.idea/**/libraries
+.mvn/
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
+.gradle/
+build/
+
+# Plik konfiguracyjny użytkownika
+.idea/caches/
+.idea/modules.xml
+.idea/compiler.xml
+.idea/jarRepositories.xml
+
+# Lokalne pliki konfiguracyjne
+.idea/artifacts
+.idea/.name
+.idea/vcs.xml
+
+# Pliki wykonywalne i skompilowane
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
