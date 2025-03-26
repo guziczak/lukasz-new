@@ -838,6 +838,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             white-space: nowrap;
+            position: relative;
         }
 
         .about-tab.active {
@@ -849,11 +850,43 @@
             color: var(--primary-color);
         }
 
+        /* New animation styles for about tabs */
+        .about-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .about-tab:hover::after {
+            transform: scaleX(0.7);
+        }
+
+        .about-tab.active::after {
+            transform: scaleX(1);
+            animation: tabActiveIndicator 0.4s var(--transition-bezier);
+        }
+
+        @keyframes tabActiveIndicator {
+            0% {
+                transform: scaleX(0);
+            }
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
         .about-tab-content {
             display: none;
             opacity: 0;
             transform: translateY(10px);
-            transition: all 0.4s ease;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .about-tab-content.active {
@@ -3036,6 +3069,18 @@
                 transition: none !important;
             }
         }
+
+        /* Animacje dla elementów języka */
+        [id^="project"], [id^="achievement"], #heroTitle, #heroSubtitle, #heroDescription,
+        #ctaContact, #ctaProjects, #ctaCV, #aboutTitle, #aboutDescription,
+        #downloadCV, #printPortfolio, #yearsExperienceLabel, #projectsCompletedLabel,
+        #happyClientsLabel, #certificationsLabel, #skillsTitle, #projectsTitle,
+        #gamesTitle, #gamesDescription, #certificatesTitle, #testimonialsTitle,
+        #achievementsTitle, #contactTitle, #contactInfoTitle, #contactLocation,
+        #openModalText, #contactCardTitle, #contactCardText, #openModalText2,
+        #modalTitle, #sendModalMessage, #mobileCvText, #copyright, #footerCV {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -3924,6 +3969,182 @@
         });
     }
 
+    // Enhanced Smooth Scrolling for Navigation with Better Offset Calculation
+    function enhanceSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href').substring(1);
+                    const target = document.getElementById(targetId);
+
+                    if (target) {
+                        // Calculate navbar height dynamically to ensure proper scrolling
+                        const navbar = document.getElementById('navbar');
+                        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+
+                        // Add a small additional offset for better visual positioning
+                        const offset = navbarHeight + 15;
+
+                        // Enhanced smooth scrolling
+                        window.scrollTo({
+                            top: target.offsetTop - offset,
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        const mobileNavMenu = document.getElementById('mobileNavMenu');
+                        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+                        if (mobileNavMenu && mobileNavMenu.classList.contains('active')) {
+                            mobileNavMenu.classList.remove('active');
+                            if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+                            const menuIcon = document.getElementById('menuIcon');
+                            if (menuIcon) {
+                                menuIcon.classList.remove('fa-times');
+                                menuIcon.classList.add('fa-bars');
+                            }
+                            document.body.style.overflow = '';
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    // Enhanced About Tabs with Animation
+    function enhanceAboutTabs() {
+        const aboutTabs = document.querySelectorAll('.about-tab');
+        const aboutTabContents = document.querySelectorAll('.about-tab-content');
+
+        aboutTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.getAttribute('data-tab');
+                const targetContent = document.getElementById(targetTab + '-content');
+
+                if (!targetContent || tab.classList.contains('active')) return;
+
+                // Remove active class from all tabs
+                aboutTabs.forEach(t => t.classList.remove('active'));
+
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                // Animate out current active content
+                const currentActive = document.querySelector('.about-tab-content.active');
+                if (currentActive) {
+                    currentActive.style.opacity = '0';
+                    currentActive.style.transform = 'translateY(10px)';
+
+                    // After animation out completes, hide it and show new content
+                    setTimeout(() => {
+                        aboutTabContents.forEach(content => content.classList.remove('active'));
+
+                        // Show and animate in new content
+                        targetContent.classList.add('active');
+                        setTimeout(() => {
+                            targetContent.style.opacity = '1';
+                            targetContent.style.transform = 'translateY(0)';
+                        }, 50);
+                    }, 300);
+                } else {
+                    // If no current active content, just show new one
+                    aboutTabContents.forEach(content => content.classList.remove('active'));
+                    targetContent.classList.add('active');
+
+                    setTimeout(() => {
+                        targetContent.style.opacity = '1';
+                        targetContent.style.transform = 'translateY(0)';
+                    }, 50);
+                }
+            });
+        });
+    }
+
+    // Enhanced Language Switcher with Animation
+    function enhanceLanguageSwitcher() {
+        // Add transition styles to elements that change with language
+        const transitionElements = [
+            'heroTitle', 'heroSubtitle', 'heroDescription', 'ctaContact',
+            'ctaProjects', 'ctaCV', 'aboutTitle', 'aboutDescription',
+            'downloadCV', 'printPortfolio', 'yearsExperienceLabel',
+            'projectsCompletedLabel', 'happyClientsLabel', 'certificationsLabel',
+            'skillsTitle', 'projectsTitle', 'gamesTitle', 'gamesDescription',
+            'certificatesTitle', 'testimonialsTitle', 'achievementsTitle',
+            'contactTitle', 'contactInfoTitle', 'contactLocation', 'openModalText',
+            'contactCardTitle', 'contactCardText', 'openModalText2', 'modalTitle',
+            'sendModalMessage', 'mobileCvText', 'copyright', 'footerCV'
+        ];
+
+        // Project and achievement descriptions
+        document.querySelectorAll('[id^="project"], [id^="achievement"]').forEach(el => {
+            el.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        });
+
+        // Override the changeLanguage function to include animations
+        window.changeLanguage = function(lang) {
+            // Store the previous language
+            const previousLang = localStorage.getItem('selectedLanguage') || 'en';
+
+            // Only animate if changing to a different language
+            if (lang !== previousLang) {
+                // Save new language preference
+                localStorage.setItem('selectedLanguage', lang);
+
+                // Animate out current content
+                animateContentOut();
+
+                // Apply new language after animation
+                setTimeout(() => {
+                    applyLanguage(lang);
+                    animateContentIn();
+                }, 300);
+            }
+
+            // Update language flag
+            const currentLangFlag = document.getElementById('currentLangFlag');
+            if (currentLangFlag) {
+                currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
+            }
+        };
+
+        // Helper function to animate content out
+        function animateContentOut() {
+            transitionElements.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(10px)';
+                }
+            });
+
+            document.querySelectorAll('[id^="project"], [id^="achievement"]').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+            });
+        }
+
+        // Helper function to animate content in
+        function animateContentIn() {
+            transitionElements.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 50);
+                }
+            });
+
+            document.querySelectorAll('[id^="project"], [id^="achievement"]').forEach(el => {
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 50);
+            });
+        }
+    }
+
     // Reinitialize UI components after loading CSV data
     function reinitializeUIComponents() {
         // Reinitialize skill progress bars
@@ -4177,6 +4398,38 @@
                         }, 200);
                     }
                 }
+            }
+        });
+    }
+
+    // Update active navigation link
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-item a');
+
+        // Calculate scroll position with offset
+        const navbar = document.getElementById('navbar');
+        const navbarHeight = navbar ? navbar.offsetHeight : 80;
+        const scrollPosition = window.scrollY + navbarHeight + 50; // Add extra offset for better highlighting
+
+        let current = '';
+
+        // Find the current section
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        // Update navigation links
+        navItems.forEach(item => {
+            item.classList.remove('active');
+            const href = item.getAttribute('href');
+            if (href === `#${current}`) {
+                item.classList.add('active');
             }
         });
     }
@@ -4595,30 +4848,6 @@
         }
     }
 
-    // Update active navigation link
-    function updateActiveNavLink() {
-        const sections = document.querySelectorAll('section');
-        const navItems = document.querySelectorAll('.nav-item a');
-
-        let current = '';
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
-            const sectionHeight = section.offsetHeight;
-
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href') === `#${current}`) {
-                item.classList.add('active');
-            }
-        });
-    }
-
     // Initialize Radar Chart for Skills
     function initializeRadarChart() {
         const ctx = document.getElementById('skillsRadarChart');
@@ -4756,12 +4985,6 @@
         }
     }
 
-    // Language Switcher
-    function changeLanguage(lang) {
-        localStorage.setItem('selectedLanguage', lang);
-        applyLanguage(lang);
-    }
-
     // Function to apply language
     function applyLanguage(lang) {
         const elements = {
@@ -4877,56 +5100,92 @@
             }
         };
 
-        // Update content
+        // Update content with animation
+        // First fade out all elements
         Object.keys(elements[lang]).forEach(id => {
             const element = document.getElementById(id);
             if (element) {
-                if (id.includes('Desc') || id === 'aboutDescription' || id === 'gamesDescription' || id === 'heroDescription' || id === 'contactCardText') {
-                    element.innerText = elements[lang][id];
-                } else {
-                    element.innerHTML = elements[lang][id];
-                }
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(10px)';
             }
         });
 
-        // Update language flag
-        currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
+        // After short delay, update content and fade in
+        setTimeout(() => {
+            Object.keys(elements[lang]).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (id.includes('Desc') || id === 'aboutDescription' || id === 'gamesDescription' || id === 'heroDescription' || id === 'contactCardText') {
+                        element.innerText = elements[lang][id];
+                    } else {
+                        element.innerHTML = elements[lang][id];
+                    }
+
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 50);
+                }
+            });
+
+            // Update language flag
+            currentLangFlag.src = lang === 'en' ? 'uk.svg' : 'pl.svg';
+        }, 300);
+    }
+
+    // Language Switcher
+    function changeLanguage(lang) {
+        localStorage.setItem('selectedLanguage', lang);
+        applyLanguage(lang);
     }
 
     // Check if language preference is saved
     const savedLanguage = localStorage.getItem('selectedLanguage') || 'en';
     applyLanguage(savedLanguage);
 
-    // Smooth Scrolling for Navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            if (this.getAttribute('href') !== '#') {
-                e.preventDefault();
+    // Implement lazy loading for images
+    function implementLazyLoading() {
+        const lazyImages = document.querySelectorAll('.lazy-load');
 
-                const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.hasAttribute('data-src')) {
+                            img.src = img.getAttribute('data-src');
+                            img.addEventListener('load', () => {
+                                img.classList.add('loaded');
+                            });
+                            observer.unobserve(img);
+                        }
+                    }
+                });
+            });
 
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-
-    // Back to Top Button
-    backToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+        } else {
+            // Fallback for browsers that don't support IntersectionObserver
+            lazyImages.forEach(img => {
+                img.src = img.getAttribute('data-src');
+                img.classList.add('loaded');
+            });
+        }
+    }
 
     // Skrypt integrujący wszystkie ulepszenia
     document.addEventListener('DOMContentLoaded', function() {
-        // 1. Dodaj ulepszone funkcje wskaźnika przewijania
+        // Inicjalizuj preloader
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 1000);
+        }
+
+        // Dodaj ulepszone funkcje wskaźnika przewijania
         function updateScrollProgress() {
             // Obsługa różnych przeglądarek (Safari, Chrome, Firefox)
             const scrollable = Math.max(
@@ -4946,7 +5205,7 @@
             }
         }
 
-        // 2. Zastąp domyślną obsługę przewijania
+        // Zastąp domyślną obsługę przewijania
         let ticking = false;
         window.addEventListener('scroll', function() {
             if (!ticking) {
@@ -4980,12 +5239,15 @@
             }
         });
 
-        // 3. Ulepszenia menu mobilnego
+        // Inicjalizuj funkcje obsługujące zdarzenia
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileNavMenu = document.getElementById('mobileNavMenu');
         const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const themeToggle = document.getElementById('themeToggle');
+        const backToTopBtn = document.getElementById('backToTopBtn');
 
+        // Mobile Menu Toggle
         if (mobileMenuBtn && mobileNavMenu && mobileMenuOverlay) {
             function toggleMobileMenu() {
                 mobileNavMenu.classList.toggle('active');
@@ -5021,7 +5283,22 @@
             });
         }
 
-        // 4. Ulepszenia kontaktu modalnego
+        // Theme Toggle
+        if (themeToggle) {
+            themeToggle.addEventListener('click', toggleDarkMode);
+        }
+
+        // Back to Top Button
+        if (backToTopBtn) {
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Modal handling
         const modalContent = document.querySelector('.modal-content.draggable');
         const modalHeader = document.getElementById('modalHeader');
         const contactModal = document.getElementById('contactModal');
@@ -5030,60 +5307,60 @@
         const closeModalBtn = document.getElementById('closeModalBtn');
 
         if (modalContent && modalHeader && contactModal) {
-            // Poprawiona wersja funkcji przeciągania
+            // Make modal draggable
             let isDragging = false;
             let startX, startY;
             let initialLeft, initialTop;
             const VIEWPORT_PADDING = 20;
 
             modalHeader.addEventListener('mousedown', function(e) {
-                if (e.button !== 0) return; // Tylko lewy przycisk myszy
+                if (e.button !== 0) return; // Only left mouse button
 
                 isDragging = true;
 
-                // Pobierz bieżącą pozycję modalu
+                // Get current modal position
                 const rect = modalContent.getBoundingClientRect();
                 initialLeft = rect.left;
                 initialTop = rect.top;
 
-                // Pobierz pozycję myszy
+                // Get mouse position
                 startX = e.clientX;
                 startY = e.clientY;
 
-                // Zmień kursor
+                // Change cursor
                 modalHeader.style.cursor = 'grabbing';
-                document.body.style.userSelect = 'none'; // Zapobiega zaznaczaniu tekstu
+                document.body.style.userSelect = 'none'; // Prevent text selection
 
-                // Zapobiega domyślnemu zachowaniu
+                // Prevent default behavior
                 e.preventDefault();
             });
 
             document.addEventListener('mousemove', function(e) {
                 if (!isDragging) return;
 
-                // Oblicz nową pozycję
+                // Calculate new position
                 const deltaX = e.clientX - startX;
                 const deltaY = e.clientY - startY;
 
                 const newLeft = initialLeft + deltaX;
                 const newTop = initialTop + deltaY;
 
-                // Pobierz wymiary modalu
+                // Get modal dimensions
                 const modalWidth = modalContent.offsetWidth;
                 const modalHeight = modalContent.offsetHeight;
 
-                // Ogranicz do granic okna przeglądarki
+                // Constrain to viewport bounds
                 const maxLeft = window.innerWidth - modalWidth - VIEWPORT_PADDING;
                 const maxTop = window.innerHeight - modalHeight - VIEWPORT_PADDING;
 
-                // Zastosuj ograniczenia
+                // Apply constraints
                 const constrainedLeft = Math.max(VIEWPORT_PADDING, Math.min(newLeft, maxLeft));
                 const constrainedTop = Math.max(VIEWPORT_PADDING, Math.min(newTop, maxTop));
 
-                // Ustaw nową pozycję
+                // Set new position
                 modalContent.style.left = `${constrainedLeft}px`;
                 modalContent.style.top = `${constrainedTop}px`;
-                modalContent.style.transform = 'none'; // Usuń transform, aby zapobiec konfliktom
+                modalContent.style.transform = 'none'; // Remove transform to prevent conflicts
             });
 
             document.addEventListener('mouseup', function() {
@@ -5091,20 +5368,20 @@
 
                 isDragging = false;
                 modalHeader.style.cursor = 'move';
-                document.body.style.userSelect = ''; // Przywróć zaznaczanie tekstu
+                document.body.style.userSelect = ''; // Restore text selection
             });
 
-            // Obsługa otwierania/zamykania modalu
+            // Modal open/close handling
             if (openContactModalBtn && openContactModalBtn2 && closeModalBtn) {
                 function openModal() {
                     contactModal.classList.add('active');
 
-                    // Wyśrodkuj modal
+                    // Center modal
                     modalContent.style.top = '50%';
                     modalContent.style.left = '50%';
                     modalContent.style.transform = 'translate(-50%, -50%)';
 
-                    // Zacznij od pierwszego pola po otwarciu
+                    // Focus first input after opening
                     setTimeout(() => {
                         const firstInput = document.getElementById('modalNameInput');
                         if (firstInput) firstInput.focus();
@@ -5119,14 +5396,14 @@
                 openContactModalBtn2.addEventListener('click', openModal);
                 closeModalBtn.addEventListener('click', closeModal);
 
-                // Zamknij modal po kliknięciu poza nim
+                // Close modal when clicking outside
                 contactModal.addEventListener('click', (e) => {
                     if (e.target === contactModal) {
                         closeModal();
                     }
                 });
 
-                // Zamknij modal klawiszem Escape
+                // Close modal with Escape key
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && contactModal.classList.contains('active')) {
                         closeModal();
@@ -5135,85 +5412,55 @@
             }
         }
 
-        // 5. Inicjalizacja ulepszonych filtrów
+        // Enhanced smooth scrolling
+        enhanceSmoothScrolling();
+
+        // Enhanced about tabs with animation
+        enhanceAboutTabs();
+
+        // Enhanced language switcher with animation
+        enhanceLanguageSwitcher();
+
+        // Initialize all data from CSV files
+        initializeFromCSV();
+
+        // Initialize filters
         initProjectFilter();
         initCertificateFilter();
 
-        // 6. Ulepszone animacje
+        // Enhanced skill cards
+        enhanceSkillCards();
+
+        // Initialize UI components
         enhanceScrollAnimations();
         handleRefreshAnimations();
-
-        // 7. Ulepszona walidacja formularza
         enhanceContactForm();
-
-        // 8. Dodatkowe ulepszenia
-
-        // Dodaj maksymalny czas dla preloadera
-        setTimeout(() => {
-            const preloader = document.getElementById('preloader');
-            if (preloader) preloader.classList.add('hidden');
-        }, 3000);
-
-        // Początkowa aktualizacja wskaźnika przewijania
-        updateScrollProgress();
-
-        // Dodaj klasę animate-on-scroll do wszystkich kart
-        document.querySelectorAll('.skill-card, .project-card, .certificate-card, .testimonial-card, .achievement-card, .game-card').forEach(card => {
-            card.classList.add('animate-on-scroll');
-        });
-
-        // Implementuj lazy loading dla obrazów
-        function implementLazyLoading() {
-            const lazyImages = document.querySelectorAll('.lazy-load');
-            const imageObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        if (img.hasAttribute('data-src')) {
-                            img.src = img.getAttribute('data-src');
-                            img.addEventListener('load', () => {
-                                img.classList.add('loaded');
-                            });
-                            observer.unobserve(img);
-                        }
-                    }
-                });
-            });
-
-            lazyImages.forEach(img => {
-                imageObserver.observe(img);
-            });
-        }
-
-        // Inicjalizuj paski postępu umiejętności
-        initSkillBars();
-
-        // Inicjalizacja tabów About
-        initAboutTabs();
-
-        // Inicjalizacja wykresu umiejętności
-        initializeRadarChart();
-
-        // Dodaj cząsteczki do sekcji hero
-        addHeroParticles();
-
-        // Inicjalizuj wszystkie dane z plików CSV
-        initializeFromCSV();
-
-        // Implementuj lazy loading dla obrazów
         implementLazyLoading();
 
-        // Dodaj obsługę dark mode toggle
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', toggleDarkMode);
-        }
+        // Initialize radar chart
+        initializeRadarChart();
+
+        // Add hero particles effect
+        addHeroParticles();
+
+        // Initial update of components
+        updateScrollProgress();
+        updateActiveNavLink();
+
+        // Initialize current tab content with proper visibility
+        document.querySelectorAll('.about-tab-content.active').forEach(content => {
+            content.style.opacity = '1';
+            content.style.transform = 'translateY(0)';
+        });
     });
 
-    // Hide preloader when page is loaded
+    // Hide preloader when page is fully loaded
     window.addEventListener('load', () => {
         setTimeout(() => {
-            preloader.classList.add('hidden');
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('hidden');
+            }
         }, 500);
     });
 </script>
